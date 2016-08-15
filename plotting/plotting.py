@@ -5,7 +5,6 @@
 import matplotlib.pyplot as plt
 import mpld3
 from mpld3 import plugins
-from mpld3.plugins import PointClickableHTMLTooltip
 import numpy as np
 import sys
 
@@ -75,7 +74,6 @@ class StackedArea(Plot):
             targets = ['<a href="url">{}</a>'.format(id) for id in self.ids]
 
             plot = ax.plot(self.x, series, color=color_select[idx], marker='o')
-            plugins.connect(fig, PointClickableHTMLTooltip(plot, labels=labels, targets=self.ids))
             plot_list.append(plot)
 
             print(labels, file=sys.stderr)
