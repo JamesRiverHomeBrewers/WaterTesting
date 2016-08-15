@@ -1,0 +1,16 @@
+
+# Virtual Environment
+bin
+include
+lib
+man
+pip-selfcheck.json
+
+# Vim Backup
+*~
+
+# Data Files
+*.csv
+
+# Local Config Files
+client_id.json
