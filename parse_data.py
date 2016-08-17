@@ -8,6 +8,7 @@ from pandas import read_csv
 from pandas import to_datetime
 import numpy as np
 
+
 from plotting import StackedArea
 
 df = read_csv('data.csv')
@@ -51,13 +52,18 @@ for location in locations:
     print('<h1>{}</h1>'.format(location))
     filtered = df[df.charting == location]
 
-    StackedArea(
+    my_plot = StackedArea(
         filtered['sample_date'],
         [filtered['ca_hardness'], filtered['mg_hardness']],
         ['Ca Hardness', 'Mg Hardness'],
-        filtered.id
+        filtered.id,
+        location
     )
 
+    img, html = my_plot.plot()
+
+    print(html)
+    print(img)
 
 ## Alkalinity over time (Total, Residual)
 

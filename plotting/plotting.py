@@ -3,10 +3,13 @@
 """
 
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
 import mpld3
 from mpld3 import plugins
 import numpy as np
-import sys
+import sys, os
+from slugify import UniqueSlugify
+slug = UniqueSlugify(to_lower=True)
 
 # These are the "Tableau 20" colors as RGB.
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -15,7 +18,7 @@ tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
              (227, 119, 194), (247, 182, 210), (127, 127, 127), (199, 199, 199),
              (188, 189, 34), (219, 219, 141), (23, 190, 207), (158, 218, 229)]
 
-# Scale the RGB values to the [0, 1] range, which is the format matplotlib accepts.
+# Scale the RGB values to the [0, 1] range, the format matplotlib accepts.
 for i in range(len(tableau20)):
     r, g, b = tableau20[i]
     tableau20[i] = (r / 255., g / 255., b / 255.)
@@ -26,7 +29,7 @@ class Plot():
 
     """
 
-    def __init__(self, x, y, labels, ids):
+    def __init__(self, x, y, labels, ids, title=None):
         self.x = x
         if isinstance(y, list):
             self.y = []
@@ -41,9 +44,10 @@ class Plot():
         for id in ids:
             self.ids.append(str(id))
 
-        self._plot()
+        self.title = title
 
-    def _plot(self):
+    def plot(self):
+        """ Dummy function needs to be implemented. """
         pass
 
 
@@ -58,30 +62,34 @@ class LinePlot(Plot):
 
 
 class StackedArea(Plot):
+    """ Class to implement the _plot function of Plot class. Makes stacked
+        area line charts.
     """
 
-    """
-
-    def _plot(self):
+    def plot(self):
         color_select = tableau20[:len(self.y)]
-
+        #fig, ax = plt.subplots()
         fig = plt.figure()
-        ax = fig.add_subplot(1,1,1)
-
-        plot_list = []
+        ax = fig.add_subplot(111)
+        handle_list = []
         for idx, series in enumerate(self.y):
-            labels = ['{}: {}'.format(self.labels[idx], y) for y in series]
-            targets = ['<a href="url">{}</a>'.format(id) for id in self.ids]
+            #labels = ['{}: {}'.format(self.labels[idx], y) for y in series]
+            #targets = ['<a href="url">{}</a>'.format(id) for id in self.ids]
+            ax.plot(self.x, series, color=color_select[idx], marker='o')
+            handle_list.append(mpatches.Patch(
+                color=color_select[idx],
+                label=self.labels[idx])
+            )
 
-            plot = ax.plot(self.x, series, color=color_select[idx], marker='o')
-            plot_list.append(plot)
+        ax.grid(color='lightgray', alpha=0.7)
+        #ax.legend(loc='upper rfight', fancybox=True, title='The Legend Continues')
+        ax.legend(handles=handle_list, title='')
+        # Print the plot HTML
 
-            print(labels, file=sys.stderr)
-            print(targets, file=sys.stderr)
-
-
-        ax.legend(plot_list, self.labels)
-
-        print(mpld3.fig_to_html(fig))
+        html = mpld3.fig_to_html(fig)
+        img_file = 'html/img/{}.png'.format(slug(self.title))
+        plt.savefig(img_file)
 
         plt.close()
+
+        return img_file, html
