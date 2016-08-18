@@ -88,8 +88,9 @@ class LinePlot(Plot):
         html = mpld3.fig_to_html(fig)
 
         # Save png image
-        img_file = 'html/img/{}.png'.format(self.title)
-        plt.savefig(img_file)
+        img_file = '{}.png'.format(self.title)
+        img_path = os.path.join('html', 'img')
+        plt.savefig(os.path.join(img_path, img_file))
 
         plt.close()
 
