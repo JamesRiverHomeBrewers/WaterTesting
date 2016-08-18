@@ -1,8 +1,13 @@
-{% extends "base.html" %}
+{% extends "templates/base.html" %}
+
 {% block title %}{{ page_title }}{% endblock %}
 {% block heading %}{{ page_title }}{% endblock %}
+
 {% block content %}
-  <h1>Index</h1>
-  <p class="important">
-    Welcome on my awesome homepage.
+  <h1>Hardness Plots</h1>
+  {{ hardness_plt_html }}
+
+  Alternate: {{ hardness_plt_png }}
+
+  {{ unused }}
 {% endblock %}
