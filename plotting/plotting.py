@@ -68,7 +68,7 @@ class LinePlot(Plot):
     def plot(self):
         color_select = tableau20[:len(self.y)]
 
-        fig = plt.figure()
+        fig = plt.figure(figsize=(700/96, 500/96), dpi=96)
         ax = fig.add_subplot(111)
 
         handle_list = []
@@ -83,14 +83,14 @@ class LinePlot(Plot):
 
         ax.grid(color='lightgray', alpha=0.7)
         ax.legend(handles=handle_list, title='')
-
+        ax.figure.autofmt_xdate()
         # Generate the plot HTML
         html = mpld3.fig_to_html(fig)
 
         # Save png image
         img_file = '{}.png'.format(self.title)
         img_path = os.path.join('html', 'img')
-        plt.savefig(os.path.join(img_path, img_file))
+        plt.savefig(os.path.join(img_path, img_file), bbox_inches='tight')
 
         plt.close()
 

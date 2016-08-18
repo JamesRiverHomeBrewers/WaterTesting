@@ -2,49 +2,66 @@
 
 {% block css %}
 <style type="text/css">
-  div {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  .image_block {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between; /* or space-around */
-  } 
-
-  a {
-    display: inline-block;
-    margin-bottom: 8px;
-    width: calc(50% - 4px);
   }
 
-  @media screen and (min-width: 50em) {
-    a {
-      width: calc(25% - 6px);
+  .image_anchor {
+    display: inline-block;
+    margin-bottom: 4px;
+    width: calc(100% - 2px);
+  }
+  .image_anchor_small {
+    display: inline-block;
+    margin-bottom: 4px;
+    width: calc(75% - 2px);
+  }
+  @media screen and (min-width: 75em) {
+    .image_anchor {
+      width: calc(50% - 2px);
+    }
+    .image_anchor_small {
+      width: calc(50% - 2px);
     }
   }
 </style>
+
 {% endblock %}
 
 {% block title %}{{ page_title }}{% endblock %}
 {% block heading %}{{ page_title }}{% endblock %}
 
+{% block navigation %}
+	{% for page in pages %}
+	  <li{% if page.slug == active_page %} class="active"{% endif
+	  %}><a href="../{{ page.url|e }}">{{ page.caption|e }}</a></li>
+	{% endfor %}
+{% endblock %}
+
 {% block content %}
- 
+  <h1>Hardness Plots</h1>
   <div>
-    <h1>Hardness Plots</h1>
-    <a href={{ hardness_plt_png }}>
+    <a href={{ thispage.hardness_plt_png }} "align: left; text-align:center;">
       <figure>
-        <img src={{ hardness_plt_png }} alt="">
+        <img src={{ thispage.hardness_plt_png }} alt="">
         <figcaption>Mg Hardness and Ca Hardness</figcaption>
       </figure>
     </a>
   </div>
 
- 
-  <div>
   <h1>Ion Concentrations</h1>
-    {% for ion in ion_png %}
-    <a href={{ ion }}>
-      <figure>
-        <img src={{ ion }} alt="">
-        <figcaption>Plot of {{ ion }}</figcaption>
+  <div class=image_block>
+    {% for ion in thispage.ion_png %}
+    <a class=image_anchor_small href={{ ion[0] }}>
+      <figure "align: left; text-align:center;">
+        <img src={{ ion[0] }} alt="">
+        <figcaption>Plot of {{ ion[1] }}</figcaption>
       </figure>
     </a>
     {% endfor %}

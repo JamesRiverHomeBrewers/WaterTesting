@@ -4,13 +4,44 @@
 	{% block css %}{% endblock %}
     <title>{% block title %}{% endblock %} - JRHB Water Testing</title>
 
+<style type="text/css">
+  ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+  }
+
+  li {
+      float: left;
+  }
+
+  li a {
+      display: block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+  }
+
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+      background-color: #111;
+  }
+</style>
 </head>
 <body>
-    <ul id="navigation">
-    {% for item in navigation %}
-        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
-    {% endfor %}
-    </ul>
+	{% set active_page = active_page|default('index') -%}
+
+	<ul id="navigation"  class="nav nav-tabs">
+	{% block navigation %}
+	{% for page in pages %}
+	  <li{% if page.slug == active_page %} class="active"{% endif
+	  %}><a href="{{ page.url|e }}">{{ page.caption|e }}</a></li>
+	{% endfor %}
+	{% endblock %}
+	</ul>
 
     <h1>{% block heading %}{% endblock %}</h1>
     <div id="content">{% block content %}{% endblock %}</div>
