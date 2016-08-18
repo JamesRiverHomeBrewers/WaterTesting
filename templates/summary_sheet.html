@@ -1,13 +1,53 @@
 {% extends "templates/base.html" %}
 
+{% block css %}
+<style type="text/css">
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /* or space-around */
+  } 
+
+  a {
+    display: inline-block;
+    margin-bottom: 8px;
+    width: calc(50% - 4px);
+  }
+
+  @media screen and (min-width: 50em) {
+    a {
+      width: calc(25% - 6px);
+    }
+  }
+</style>
+{% endblock %}
+
 {% block title %}{{ page_title }}{% endblock %}
 {% block heading %}{{ page_title }}{% endblock %}
 
 {% block content %}
-  <h1>Hardness Plots</h1>
-  {{ hardness_plt_html }}
+ 
+  <div>
+    <h1>Hardness Plots</h1>
+    <a href={{ hardness_plt_png }}>
+      <figure>
+        <img src={{ hardness_plt_png }} alt="">
+        <figcaption>Mg Hardness and Ca Hardness</figcaption>
+      </figure>
+    </a>
+  </div>
 
-  Alternate: {{ hardness_plt_png }}
-
+ 
+  <div>
+  <h1>Ion Concentrations</h1>
+    {% for ion in ion_png %}
+    <a href={{ ion }}>
+      <figure>
+        <img src={{ ion }} alt="">
+        <figcaption>Plot of {{ ion }}</figcaption>
+      </figure>
+    </a>
+    {% endfor %}
+  </div>
   {{ unused }}
 {% endblock %}
