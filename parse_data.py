@@ -7,11 +7,30 @@ JRHB Water Testing
 from pandas import read_csv
 from pandas import to_datetime
 import numpy as np
-
+from slugify import UniqueSlugify
+from jinja2 import Template
 
 from plotting import StackedArea
 
+from jinja2 import Environment, FileSystemLoader
+import os
+
+# Capture our current directory
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+
+def print_html_doc(template, content):
+    # Create the jinja2 environment.
+    # Notice the use of trim_blocks, which greatly helps control whitespace.
+    j2_env = Environment(loader=FileSystemLoader(THIS_DIR),
+                         trim_blocks=True)
+    print j2_env.get_template(template).render(content)
+
+
+slug = UniqueSlugify(to_lower=True)
+
 df = read_csv('data.csv')
+HTML_ROOT = 'html'
+LOCATION_DIR = 'location'
 
 SO4CL_RATIO = {
     0: 'Too Malty',
@@ -45,25 +64,31 @@ df = df.sort_values(by='sample_date')
 
 # Plots Needed
 
-## Hardness over time (Total, Ca, Mg)
+
 locations = df.charting.unique()
 
+pages = []
+
 for location in locations:
-    print('<h1>{}</h1>'.format(location))
+    page_dict = {'page_title': location}
+
     filtered = df[df.charting == location]
 
+    ## Hardness over time (Total, Ca, Mg)
     my_plot = StackedArea(
         filtered['sample_date'],
         [filtered['ca_hardness'], filtered['mg_hardness']],
         ['Ca Hardness', 'Mg Hardness'],
         filtered.id,
-        location
+        slug(location)
     )
 
-    img, html = my_plot.plot()
-
+    page_dict['hardness_plt_png'], page_dict['hardness_plt_html'] = my_plot.plot()
+    
     print(html)
     print(img)
+    
+    pages.append(page_dict)
 
 ## Alkalinity over time (Total, Residual)
 

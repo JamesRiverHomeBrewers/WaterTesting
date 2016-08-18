@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %} - JRHB Water Testing</title>
+</head>
+<body>
+    <ul id="navigation">
+    {% for item in navigation %}
+        <li><a href="{{ item.href }}">{{ item.caption }}</a></li>
+    {% endfor %}
+    </ul>
+
+    <h1>{% block heading %}{% endblock %}</h1>
+    <div id="content">{% block content %}{% endblock %}</div>
+
+    <div id="footer">
+      {% block footer %}
+      &copy; Copyright 2016 by <a href="http://jrhb.org/">James River Homebrewers</a>.
+      {% endblock %}
+    </div>
+
+</body>
+</html>
