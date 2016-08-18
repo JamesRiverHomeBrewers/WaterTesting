@@ -50,7 +50,7 @@ class Plot():
         pass
 
 
-class LinePlot(Plot):
+class StackedArea(Plot):
     """
 
     """
@@ -60,16 +60,17 @@ class LinePlot(Plot):
 
 
 
-class StackedArea(Plot):
+class LinePlot(Plot):
     """ Class to implement the _plot function of Plot class. Makes stacked
         area line charts.
     """
 
     def plot(self):
         color_select = tableau20[:len(self.y)]
-        #fig, ax = plt.subplots()
+
         fig = plt.figure()
         ax = fig.add_subplot(111)
+
         handle_list = []
         for idx, series in enumerate(self.y):
             #labels = ['{}: {}'.format(self.labels[idx], y) for y in series]
@@ -81,7 +82,6 @@ class StackedArea(Plot):
             )
 
         ax.grid(color='lightgray', alpha=0.7)
-        #ax.legend(loc='upper rfight', fancybox=True, title='The Legend Continues')
         ax.legend(handles=handle_list, title='')
 
         # Generate the plot HTML

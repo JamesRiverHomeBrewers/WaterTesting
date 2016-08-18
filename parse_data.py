@@ -11,7 +11,7 @@ import numpy as np
 from slugify import UniqueSlugify
 from jinja2 import Environment, FileSystemLoader
 
-from plotting import StackedArea
+from plotting import StackedArea, LinePlot
 
 # Directories
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -73,7 +73,7 @@ if __name__ == '__main__':
 		filtered = df[df.charting == location]
 
 		## Hardness over time (Total, Ca, Mg)
-		my_plot = StackedArea(
+		my_plot = LinePlot(
 			filtered['sample_date'],
 			[filtered['ca_hardness'], filtered['mg_hardness']],
 			['Ca Hardness', 'Mg Hardness'],
@@ -85,11 +85,6 @@ if __name__ == '__main__':
 
 		html_path = os.path.join(THIS_DIR, HTML_ROOT, LOCATION_DIR, loc_slug + '.html')
 
-		with open(html_path, 'w') as html_file:
-			html_file.write(make_html_doc(loc_tmpl, page_dict))
-
-
-
 		## Alkalinity over time (Total, Residual)
 
 		## Ion Concentrations over time (Cl-, SO4-, Ca2+, Mg2+, HCO3-)
@@ -97,5 +92,8 @@ if __name__ == '__main__':
 		## SO4/Cl Ratio over time
 
 		## pH over time
+
+		with open(html_path, 'w') as html_file:
+			html_file.write(make_html_doc(loc_tmpl, page_dict))
 
 		pages.append(page_dict)
