@@ -83,9 +83,11 @@ class StackedArea(Plot):
         ax.grid(color='lightgray', alpha=0.7)
         #ax.legend(loc='upper rfight', fancybox=True, title='The Legend Continues')
         ax.legend(handles=handle_list, title='')
-        # Print the plot HTML
 
+        # Generate the plot HTML
         html = mpld3.fig_to_html(fig)
+
+        # Save png image
         img_file = 'html/img/{}.png'.format(self.title)
         plt.savefig(img_file)
 
