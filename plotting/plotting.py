@@ -8,8 +8,7 @@ import mpld3
 from mpld3 import plugins
 import numpy as np
 import sys, os
-from slugify import UniqueSlugify
-slug = UniqueSlugify(to_lower=True)
+
 
 # These are the "Tableau 20" colors as RGB.
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -87,7 +86,7 @@ class StackedArea(Plot):
         # Print the plot HTML
 
         html = mpld3.fig_to_html(fig)
-        img_file = 'html/img/{}.png'.format(slug(self.title))
+        img_file = 'html/img/{}.png'.format(self.title)
         plt.savefig(img_file)
 
         plt.close()
