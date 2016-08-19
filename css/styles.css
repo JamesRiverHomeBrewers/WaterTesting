@@ -1,0 +1,94 @@
+/*
+navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+navigation li {
+    float: left;
+}
+
+navigation li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+*/
+.area-top{
+  width: 100%;
+  height: 100px;
+  background-color: #FFF;
+  position:fixed;
+}
+
+.container {
+  padding-top: 100px;
+}
+
+.navbar{
+  position:absolute;
+  top:100px;
+}
+.navbar-fixed-left {
+  width: 200px;
+  position: fixed; /* absolute */
+  border-radius: 0;
+  height: 100%;
+}
+
+.navbar-fixed-left .navbar-nav > li {
+  float: none;  /* Cancel default li float: left */
+  width: 199px;
+}
+
+.navbar-fixed-left + .container {
+  padding-left: 210px;
+}
+
+/* On using dropdown menu (To right shift popuped) */
+.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+  margin-top: -50px;
+  margin-left: 200px;
+}
+
+
+img {
+  max-width: 100%;
+}
+.image_block {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;  or space-around 
+}
+.image_anchor {
+  display: inline-block;
+  margin-bottom: 4px;
+  width: calc(100% - 2px);
+}
+.image_anchor_small {
+  display: inline-block;
+  margin-bottom: 4px;
+  width: calc(100% - 2px);
+}
+@media screen and (min-width: 50em) {
+  .image_anchor {
+    width: calc(100% - 2px);
+  }
+  .image_anchor_small {
+    width: calc(50% - 2px);
+  }
+}
+@media screen and (min-width: 80em) {
+  .image_anchor {
+    width: calc(100% - 2px);
+  }
+  .image_anchor_small {
+    width: calc(33% - 2px);
+  }
+}
+
