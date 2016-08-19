@@ -1,15 +1,7 @@
-language: python
-sudo: false
-python:
-  - "2.6"
-  - "2.7"
-  - "3.2"
-  - "3.3"
-  - "3.4"
-  - "3.5"
-  - "3.5-dev" # 3.5 development branch
-  - "nightly" # currently points to 3.6-dev
-# command to install dependencies
-install: "pip install --user -r requirements.txt"
-# command to run tests
-script: nosetests
+language: generic # don't install any environment
+
+script: bash ./deploy.sh
+env:
+  global:
+  - ENCRYPTION_LABEL: "<.... encryption label from previous step ....>"
+  - COMMIT_AUTHOR_EMAIL: "c.giacofei@gmail.com"
