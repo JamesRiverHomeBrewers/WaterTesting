@@ -1,0 +1,22 @@
+{% extends "templates/base.html" %}
+
+{% block css %}
+<link rel="stylesheet" href="../stylesheets/styles.css">
+<link rel="stylesheet" href="../stylesheets/bootstrap.css">
+<link rel="stylesheet" href="../stylesheets/font-awesome.min.css">
+{% endblock %}
+
+{% block title %}#{{ thispage.caption }}{% endblock %}
+{% block heading %}{{ thispage.caption }}{% endblock %}
+
+<navigation>
+  <ul>
+  {% for page in pages %}
+    <li><a href="../{{ page.url|e }}">{{ page.caption|e }}</a></li>
+  {% endfor %}
+  </ul>
+</navigation>
+
+{% block content %}
+
+{% endblock %}
