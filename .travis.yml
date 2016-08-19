@@ -1,7 +1,9 @@
 language: python # don't install any environment
 python: "3.4"
-script: bash ./deploy.sh
+script:
+  - bash ./compile.sh
+  - bash ./deploy.sh
 env:
   global:
-  - ENCRYPTION_LABEL: "<.... encryption label from previous step ....>"
+  - ENCRYPTION_LABEL: "b264e999e6c5"
   - COMMIT_AUTHOR_EMAIL: "c.giacofei@gmail.com"
