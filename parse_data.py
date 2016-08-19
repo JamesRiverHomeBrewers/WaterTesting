@@ -80,7 +80,7 @@ if __name__ == '__main__':
 
 	locations = df.charting.unique()
 
-	pages = [{'url': 'index.html','slug': 'Home','caption': 'Water Testing Home'}]
+	pages = []
 
 	# Headings:
 	#  total_hardness, ca_hardness, mg_hardness
