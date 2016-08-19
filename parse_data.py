@@ -5,12 +5,14 @@ JRHB Water Testing
 """
 
 import os
-from pandas import read_csv
-from pandas import to_datetime
+import pandas as pd
+from pandas import read_csv, to_datetime, DataFrame
 import numpy as np
 from slugify import UniqueSlugify
 from jinja2 import Environment, FileSystemLoader
 from PIL import Image, ImageChops
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
 
 from plotting import StackedArea, LinePlot
 
@@ -43,7 +45,11 @@ def make_html_doc(template, content):
 
 
 if __name__ == '__main__':
-	df = read_csv('data.csv')
+	scope = ['https://spreadsheets.google.com/feeds']
+	credentials = ServiceAccountCredentials.from_json_keyfile_name('client_id.json', scope)
+	gc = gspread.authorize(credentials)
+	wks = gc.open_by_key("1Z1XF9nabneWBDbFwaovI_n9YcazeNQq4hon1wsIxrus").worksheet('Data')
+	df = DataFrame(wks.get_all_records())
 
 	loc_tmpl = os.path.join('templates', 'summary_sheet.html')
 	index_tmpl = os.path.join('templates', 'base.html')
@@ -61,21 +67,26 @@ if __name__ == '__main__':
 		9.01: 'Too Bitter'
 	}
 
+	df['total_hardness'] = df['total_hardness'].apply(pd.to_numeric, args=('coerce',))
+	df['ca_hardness'] = df['ca_hardness'].apply(pd.to_numeric, args=('coerce',))
+	df['total_alkalinity'] = df['total_alkalinity'].apply(pd.to_numeric, args=('coerce',))
+	df['so4'] = df['so4'].apply(pd.to_numeric, args=('coerce',))
+	df['cl'] = df['cl'].apply(pd.to_numeric, args=('coerce',))
+	
 	# Add calculated columns
 	df['mg_hardness'] = df['total_hardness'] - df['ca_hardness']
 	df['res_alkalinity'] = df['total_alkalinity'] - (df['ca_hardness']/3.5 + df['mg_hardness']/7)
 	df['ca2'] = df['ca_hardness'] * 0.4
 	df['mg2'] = df['mg_hardness'] * 0.25
 	df['hco3'] = df['total_alkalinity'] * 1.22
-	df['so4_cl'] = df['so4'] / df['cl']
+	df['so4_cl_ratio'] = df['so4'] / df['cl']
 
 	# Add descriptor from SO4 / Cl Ratio Lookup
-	set_ratio = [min(SO4CL_RATIO.keys(), key=lambda x: abs(x - r)) for r in df['so4_cl']]
+	set_ratio = [min(SO4CL_RATIO.keys(), key=lambda x: abs(x - r)) for r in df['so4_cl_ratio']]
 	ratios = [SO4CL_RATIO[value] for value in set_ratio]
-
+	
 	df['balance'] = ratios
-
-	df['sample_date'] = to_datetime(df['sample_date'], format='%m/%d/%Y')
+	df['sample_date'] = to_datetime(df['sample_date'], format='%Y-%m-%d')
 	df = df.sort_values(by='sample_date')
 
 	locations = df.charting.unique()
@@ -90,7 +101,6 @@ if __name__ == '__main__':
 	#  ph
 	for location in locations:
 		page_dict = {'caption': location}
-
 		page_dict['slug'] = SLUG(location)
 		page_dict['src'] = os.path.join(ABS_LOCATION_DIR, page_dict['slug'] + '.html')
 		page_dict['url'] = LOCATION_DIR + '/' + page_dict['slug'] + '.html'
@@ -102,7 +112,7 @@ if __name__ == '__main__':
 			filtered['sample_date'],
 			[filtered['ca_hardness'], filtered['mg_hardness']],
 			['Ca Hardness', 'Mg Hardness'],
-			filtered.id,
+			filtered['sample_id'],
 			page_dict['slug'] + '-hardness'
 		)
 
@@ -124,7 +134,7 @@ if __name__ == '__main__':
 			('hco3', 'HCO3-'),
 		]
 		dates = filtered['sample_date']
-		ids = filtered['id']
+		ids = filtered['sample_id']
 
 		page_dict['ion_png'] = []
 		page_dict['ion_html'] = []

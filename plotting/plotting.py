@@ -85,8 +85,8 @@ class LinePlot(Plot):
         ax.legend(handles=handle_list, title='')
         ax.figure.autofmt_xdate()
         # Generate the plot HTML
-        html = mpld3.fig_to_html(fig)
-
+        #html = mpld3.fig_to_html(fig)
+        html = None
         # Save png image
         img_file = '{}.png'.format(self.title)
         img_path = os.path.join('html', 'img')
