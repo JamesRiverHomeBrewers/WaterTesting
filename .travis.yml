@@ -1,5 +1,5 @@
-language: generic # don't install any environment
-
+language: python # don't install any environment
+python: "3.4"
 script: bash ./deploy.sh
 env:
   global:
