@@ -2,58 +2,60 @@
 <html lang="en">
 <head>
 	{% block css %}
-	<link rel="stylesheet" href="stylesheets/styles.css">
-	<link rel="stylesheet" href="stylesheets/github-dark.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap-theme.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
+
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
 	{% endblock %}
-	<title>{% block title %}{% endblock %} - JRHB Water Testing</title>
+  <script>
+      $(document).ready(function () {
+          $('.dropdown-toggle').dropdown();
+      });
+  </script>
+	
+  <title>{% block title %}Water Testing{% endblock %} - JRHB Water Testing</title>
 
-<style type="text/css">
-  ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      background-color: #333;
-  }
-
-  li {
-      float: left;
-  }
-
-  li a {
-      display: block;
-      color: white;
-      text-align: center;
-      padding: 14px 16px;
-      text-decoration: none;
-  }
-
-  /* Change the link color to #111 (black) on hover */
-  li a:hover {
-      background-color: #111;
-  }
-</style>
 </head>
 <body>
-	{% set active_page = active_page|default('index') -%}
-
-	<ul id="navigation"  class="nav nav-tabs">
-	{% block navigation %}
-	{% for page in pages %}
-	  <li{% if page.slug == active_page %} class="active"{% endif
-	  %}><a href="{{ page.url|e }}">{{ page.caption|e }}</a></li>
-	{% endfor %}
-	{% endblock %}
-	</ul>
-
-    <h1>{% block heading %}{% endblock %}</h1>
-    <div id="content">{% block content %}{% endblock %}</div>
-
-    <div id="footer">
+  <div class="area-top">
+    <h1>{% block heading %}Water Testing{% endblock %}</h1>
+    <subtitle>James River Homebrewers</subtitle>
+  </div>
+  <div class="navbar navbar-inverse navbar-fixed-left">
+    {% block home %}
+    <a class="navbar-brand" href="index.html">Home</a>
+    {% endblock %}
+    <ul class="nav navbar-nav">
+     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sample Location<span class="caret"></span></a>
+       <ul class="dropdown-menu" role="menu">
+        {% block locations %}
+        {% for page in pages %}
+        <li><a href="{{ page.url|e }}">{{ page.caption|e }}</a></li>
+        {% endfor %}
+        {% endblock %}
+        <!--<li class="divider"></li>-->
+       </ul>
+     </li>
+     <li><a href="#">Water Reports</a></li>
+    </ul>
+    
+  </div>
+  <div class="container">
+    <div class="row">
+     {% block content %}{% endblock %}
+    </div>
+    <div class="footer">
       {% block footer %}
       &copy; Copyright 2016 by <a href="http://jrhb.org/">James River Homebrewers</a>.
       {% endblock %}
     </div>
+  </div>
+
 
 </body>
 </html>

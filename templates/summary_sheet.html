@@ -1,20 +1,32 @@
 {% extends "templates/base.html" %}
 
 {% block css %}
+<link rel="stylesheet" href="../stylesheets/bootstrap.css">
+<link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="../stylesheets/bootstrap-theme.css">
+<link rel="stylesheet" href="../stylesheets/bootstrap-theme.min.css">
+
 <link rel="stylesheet" href="../stylesheets/styles.css">
-<link rel="stylesheet" href="../stylesheets/github-dark.css">
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 {% endblock %}
 
-{% block title %}{{ page_title }}{% endblock %}
-{% block heading %}{{ page_title }}{% endblock %}
+{% block title %}{{ thispage.caption }}{% endblock %}
+{% block heading %}{{ thispage.caption }}{% endblock %}
 
-{% block navigation %}
-	{% for page in pages %}
-	  <li{% if page.slug == active_page %} class="active"{% endif
-	  %}><a href="../{{ page.url|e }}">{{ page.caption|e }}</a></li>
-	{% endfor %}
+<!-- Navigation Bar Stuff -->
+{% block home %}
+<a class="navbar-brand" href="../index.html">Home</a>
+{% endblock %}
+    
+{% block locations %}
+{% for page in pages %}
+<li><a href="../{{ page.url|e }}">{{ page.caption|e }}</a></li>
+{% endfor %}
 {% endblock %}
 
+<!-- Start Main Content -->
 {% block content %}
   <h1>Hardness Plots</h1>
   <div class=image_block>
