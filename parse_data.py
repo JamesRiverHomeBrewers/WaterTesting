@@ -24,7 +24,18 @@ ABS_LOCATION_DIR = os.path.join(HTML_ROOT, 'location')
 
 SLUG = UniqueSlugify(to_lower=True)
 
-
+SO4CL_RATIO = {
+	0: 'Too Malty',
+	0.4: 'Very Malty',
+	.6: 'Malty',
+	.8: 'Balanced',
+	1.5: 'Little Bitter',
+	2.01: 'More Bitter',
+	4.01: 'Extra Bitter',
+	6.01: 'Quite Bitter',
+	8.01: 'Very Bitter',
+	9.01: 'Too Bitter'
+}
 
 def trim(path):
 	im = Image.open(path)
@@ -53,19 +64,6 @@ if __name__ == '__main__':
 
 	loc_tmpl = os.path.join('templates', 'bootstrap_summary_sheet.html')
 	index_tmpl = os.path.join('templates', 'bootstrap_base.html')
-	print(df.columns.values)
-	SO4CL_RATIO = {
-		0: 'Too Malty',
-		0.4: 'Very Malty',
-		.6: 'Malty',
-		.8: 'Balanced',
-		1.5: 'Little Bitter',
-		2.01: 'More Bitter',
-		4.01: 'Extra Bitter',
-		6.01: 'Quite Bitter',
-		8.01: 'Very Bitter',
-		9.01: 'Too Bitter'
-	}
 
 	# Everything is loaded as strings, need to convert to numeric
 	df['Total Hardness'] = df['Total Hardness'].apply(pd.to_numeric, args=('coerce',))
