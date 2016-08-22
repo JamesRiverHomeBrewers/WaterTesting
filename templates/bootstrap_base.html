@@ -97,7 +97,7 @@
       <ul class="nav navbar-nav">
         {% block navbar %}
         <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">Test Results</a></li>
+        <li><a href="report/index.html">Test Results</a></li>
         <li><a href="location/richmond.html">Testing Summaries</a></li>
         <li><a href="#">Contact</a></li>
         {% endblock %}
@@ -123,15 +123,25 @@
       <h1>Welcome</h1>
       <p>
       This is a very rough draft for a water testing website. The only menu item that actually does anything
-      at the moment is the <a href="location/richmond.html">Testing Summaries link</a> which takes 
+      at the moment is the <a href="location/richmond.html">Testing Summaries link</a> which takes
       takes you to a set of pages with time series plot for each water source we have data for.
       </p>
       <p>
       Pages for individual test result sheets shoul be here soon...
       </p>
       <hr>
-      <h3>Test</h3>
-      <p>Lorem ipsum...</p>
+      <h3>Report Pages</h3>
+      <p>
+      Basic report pages! No site navigation to get to them yet.
+      Examples:
+      <ul>
+        <li><a href="report/51.html">Report #51</a></li>
+        <li><a href="report/52.html">Report #52</a></li>
+        <li><a href="report/53.html">Report #53</a></li>
+        <li><a href="report/54.html">Report #54</a></li>
+        <li><a href="report/55.html">Report #55</a></li>
+      </ul>
+      </p>
       {% endblock %}
     </div>
   </div>

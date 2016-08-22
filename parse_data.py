@@ -23,7 +23,9 @@ os.environ['HTTPS_PROXY'] = "http://proxyarray.mazdausa.com:80"
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 HTML_ROOT = os.path.join(THIS_DIR, 'html')
 LOC_PATH = 'location'
-ABS_LOC_PATH = os.path.join(HTML_ROOT, 'location')
+ABS_LOC_PATH = os.path.join(HTML_ROOT, LOC_PATH)
+LOC_REPORT = 'report'
+ABS_REPORT_PATH = os.path.join(HTML_ROOT, LOC_REPORT)
 
 SLUG = UniqueSlugify(to_lower=True)
 
@@ -69,6 +71,7 @@ def add_columns(df):
     df = df.rename(columns={
         'Sample ID': 'sample_id',
         'Sample Date': 'sample_date',
+        'Test Date': 'test_date',
         'Sample Location': 'sample_location',
         'Total Hardness': 'total_hardness',
         'Calcium Hardness': 'ca_hardness',
@@ -97,8 +100,13 @@ def add_columns(df):
     ratios = [SO4CL_RATIO[value] for value in set_ratio]
 
     df['balance'] = ratios
-    df['sample_date'] = to_datetime(df['sample_date'], format='%m/%d/%Y')
+
+    df['sample_date'] = to_datetime(df['sample_date'], format='%m/%d/%Y').dt.date
+    df['test_date'] = to_datetime(df['test_date'], format='%m/%d/%Y').dt.date
+
     df = df.sort_values(by='sample_date')
+
+    df = df.round(2)
 
     return df
 
@@ -254,6 +262,13 @@ if __name__ == '__main__':
             html_file.write(make_html_doc(loc_tmpl, {
                 'thispage': page,
                 'pages': source_pages
+            }))
+
+    for page in report_pages:
+        page_path = os.path.join(ABS_REPORT_PATH, str(page['sample_id']) + '.html')
+        with open(page_path, 'w') as html_file:
+            html_file.write(make_html_doc(report_tmpl, {
+                'thispage': page,
             }))
 
     ## Make main index

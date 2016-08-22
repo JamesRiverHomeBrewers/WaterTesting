@@ -15,8 +15,8 @@
 <!-- Navigation Bar Stuff -->
 {% block navbar %}
 <li><a href="../index.html">Home</a></li>
-<li><a href="../#">Test Results</a></li>
-<li class="active"><a href="../location/richmond-public-utility.html">Testing Summaries</a></li>
+<li><a href="../report/index.html">Test Results</a></li>
+<li class="active"><a href="../location/richmond.html">Testing Summaries</a></li>
 <li><a href="../#">Contact</a></li>
 {% endblock %}
 
@@ -36,7 +36,7 @@
 <h3>Water Hardness</h3>
 <div class="row">
   <div class="col-md-8">
-    <h6 class="align-right">Mg Hardness and Ca Hardness &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Mg Hardness and Ca Hardness &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href={{ thispage.hardness_png }} class="thumbnail">
       <img src={{ thispage.hardness_png }} alt="Water hardness">
     </a>
@@ -46,7 +46,7 @@
 <h3>Water Alkalinity</h3>
 <div class="row">
   <div class="col-md-8">
-    <h6 class="align-right">Total and Residual Alkalinity &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Total and Residual Alkalinity &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href={{ thispage.alkalinity_png }} class="thumbnail">
       <img src={{ thispage.alkalinity_png }} class="figure-img img-fluid" alt="Water alkalinity">
     </a>
@@ -57,7 +57,7 @@
 <div class="row">
   {% for ion in thispage.ion_png %}
   <div class="col-lg-6 col-md-8 thumb">
-    <h6 class="align-right">{{ ion[1] }} &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">{{ ion[1] }} &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href={{ ion[0] }} class="thumbnail">
       <img src={{ ion[0] }} class="figure-img img-fluid img-responsive" alt="Water alkalinity">
     </a>
