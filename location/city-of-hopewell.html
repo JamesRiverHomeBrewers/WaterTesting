@@ -1,49 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="../stylesheets/bootstrap.css">
-<link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
-<link rel="stylesheet" href="../stylesheets/bootstrap-theme.css">
-<link rel="stylesheet" href="../stylesheets/bootstrap-theme.min.css">
-
-<link rel="stylesheet" href="../stylesheets/styles.css">
-
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-  <script>
-      $(document).ready(function () {
-          $('.dropdown-toggle').dropdown();
-      });
-  </script>
-	
   <title>City of Hopewell - JRHB Water Testing</title>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    img {
+      max-width: 100%;
+    }
+    .image_block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;  or space-around 
+    }
+    .image_anchor {
+      display: inline-block;
+      margin-bottom: 4px;
+      width: calc(100% - 2px);
+    }
+    .image_anchor_small {
+      display: inline-block;
+      margin-bottom: 4px;
+      width: calc(100% - 2px);
+    }
+    @media screen and (min-width: 50em) {
+      .image_anchor {
+        width: calc(100% - 2px);
+      }
+      .image_anchor_small {
+        width: calc(50% - 2px);
+      }
+    }
+    @media screen and (min-width: 80em) {
+      .image_anchor {
+        width: calc(100% - 2px);
+      }
+      .image_anchor_small {
+        width: calc(33% - 2px);
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="area-top">
-  <h1>City of Hopewell</h1>
-  <subtitle>James River Homebrewers</subtitle>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li><a href="../index.html">Home</a></li>
+<li><a href="../#">Test Results</a></li>
+<li><a href="../location/richmond-public-utility.html">Testing Summaries</a></li>
+<li><a href="../#">Contact</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+    </div>
   </div>
-  <div class="navbar navbar-inverse navbar-fixed-left">
-    <a class="navbar-brand" href="../index.html">Home</a>
-    <ul class="nav navbar-nav">
-     <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Sample Location<span class="caret"></span></a>
-       <ul class="dropdown-menu" role="menu">
-        <li><a href="../location/richmond-public-utility.html">Richmond Public Utility</a></li>
-<li><a href="../location/chesterfield-public-utility.html">Chesterfield Public Utility</a></li>
-<li><a href="../location/wells-other.html">Wells / Other</a></li>
-<li><a href="../location/newport-news-public-utility.html">Newport News Public Utility</a></li>
-<li><a href="../location/city-of-hopewell.html">City of Hopewell</a></li>
-        <!--<li class="divider"></li>-->
-       </ul>
-     </li>
-     <li><a href="#">Water Reports</a></li>
-    </ul>
-    
-  </div>
-  <div class="container">
-    <div class="row">
-       <h1>Hardness Plots</h1>
+</nav>
+  
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <p><a href="../location/richmond-public-utility.html">Richmond Public Utility</a></p>
+<p><a href="../location/chesterfield-public-tutility.html">Chesterfield Public Tutility</a></p>
+<p><a href="../location/wells-other.html">Wells / Other</a></p>
+<p><a href="../location/newport-news-public-utility.html">Newport News Public Utility</a></p>
+<p><a href="../location/city-of-hopewell.html">City of Hopewell</a></p>
+    </div>
+    <div class="col-sm-8 text-left">
+        <h1>Hardness Plots</h1>
   <div class=image_block>
     <a class=image_anchor href=../img/city-of-hopewell-hardness.png "align: left; text-align:center;">
       <figure>
@@ -55,15 +123,15 @@
 
   <h1>Ion Concentrations</h1>
   <div class=image_block>
-        <a class=image_anchor_small href=../img/city-of-hopewell-cl.png>
+        <a class=image_anchor_small href=../img/city-of-hopewell-Chlorine.png>
       <figure "align: left; text-align:center;">
-        <img src=../img/city-of-hopewell-cl.png alt="">
+        <img src=../img/city-of-hopewell-Chlorine.png alt="">
         <figcaption>Plot of Cl-</figcaption>
       </figure>
     </a>
-        <a class=image_anchor_small href=../img/city-of-hopewell-so4.png>
+        <a class=image_anchor_small href=../img/city-of-hopewell-Sulfate.png>
       <figure "align: left; text-align:center;">
-        <img src=../img/city-of-hopewell-so4.png alt="">
+        <img src=../img/city-of-hopewell-Sulfate.png alt="">
         <figcaption>Plot of SO4-</figcaption>
       </figure>
     </a>
@@ -88,11 +156,12 @@
       </div>
   
     </div>
-    <div class="footer">
-            &copy; Copyright 2016 by <a href="http://jrhb.org/">James River Homebrewers</a>.
-          </div>
   </div>
+</div>
 
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
 
 </body>
 </html>
