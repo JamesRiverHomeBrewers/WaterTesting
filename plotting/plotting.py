@@ -4,6 +4,7 @@
 
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
+from matplotlib.font_manager import FontProperties
 import mpld3
 from mpld3 import plugins
 import numpy as np
@@ -65,7 +66,9 @@ class LinePlot(Plot):
         area line charts.
     """
 
-    def plot(self):
+    def plot(self, legend=True):
+        fontP = FontProperties()
+        fontP.set_size('xx-small')
         color_select = tableau20[:len(self.y)]
 
         fig = plt.figure(figsize=(700/96, 500/96), dpi=96)
@@ -82,7 +85,17 @@ class LinePlot(Plot):
             )
 
         ax.grid(color='lightgray', alpha=0.7)
-        ax.legend(handles=handle_list, title='')
+
+        if legend:
+            ax.legend(
+                handles=handle_list,
+                title='',
+                loc='upper center',
+                bbox_to_anchor=(0.5, 1.1),
+                ncol=len(self.y),
+                prop = fontP
+            )
+
         ax.figure.autofmt_xdate()
         # Generate the plot HTML
         #html = mpld3.fig_to_html(fig)
