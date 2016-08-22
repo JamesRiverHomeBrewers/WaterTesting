@@ -77,6 +77,19 @@
         width: calc(33% - 2px);
       }
     }
+
+    .fraction {
+        display: inline-block;
+        vertical-align: middle; 
+        margin: 0 0.2em 0.4ex;
+        text-align: center;
+    }
+    .fraction > span {
+        display: block;
+        padding-top: 0.15em;
+    }
+    .fraction span.fdn {border-top: thin solid black;}
+    .fraction span.bar {display: none;}
   </style>
 </head>
 <body>
@@ -94,7 +107,7 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="../index.html">Home</a></li>
-<li><a href="../#">Test Results</a></li>
+<li><a href="../report/index.html">Test Results</a></li>
 <li class="active"><a href="../location/richmond-public-utility.html">Testing Summaries</a></li>
 <li><a href="../#">Contact</a></li>
       </ul>
