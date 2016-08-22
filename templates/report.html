@@ -1,21 +1,29 @@
 {% extends "templates/base.html" %}
 
 {% block css %}
-<link rel="stylesheet" href="../stylesheets/styles.css">
 <link rel="stylesheet" href="../stylesheets/bootstrap.css">
-<link rel="stylesheet" href="../stylesheets/font-awesome.min.css">
+<link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+<link rel="stylesheet" href="../stylesheets/bootstrap-theme.css">
+<link rel="stylesheet" href="../stylesheets/bootstrap-theme.min.css">
+
+<script src="../js/jquery.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
 {% endblock %}
 
-{% block title %}#{{ thispage.caption }}{% endblock %}
-{% block heading %}{{ thispage.caption }}{% endblock %}
 
-<navigation>
-  <ul>
-  {% for page in pages %}
-    <li><a href="../{{ page.url|e }}">{{ page.caption|e }}</a></li>
-  {% endfor %}
-  </ul>
-</navigation>
+{% block title %}{{ thispage.caption }}{% endblock %}
+
+<!-- Navigation Bar Stuff -->
+{% block navbar %}
+<li><a href="../index.html">Home</a></li>
+<li class="active"><a href="#">Test Results</a></li>
+<li><a href="../location/richmond-public-utility.html">Testing Summaries</a></li>
+<li><a href="../#">Contact</a></li>
+{% endblock %}
+
+{% block side_links %}
+<p><a href="../{{ page.url|e }}">{{ page.caption|e }}</a></p>
+{% endblock %}
 
 {% block content %}
 
