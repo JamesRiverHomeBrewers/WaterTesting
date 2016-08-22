@@ -73,7 +73,7 @@ if __name__ == '__main__':
 	df['Total Alkalinity'] = df['Total Alkalinity'].apply(pd.to_numeric, args=('coerce',))
 	df['Sulfate'] = df['Sulfate'].apply(pd.to_numeric, args=('coerce',))
 	df['Chlorine'] = df['Chlorine'].apply(pd.to_numeric, args=('coerce',))
-	
+
 	# Add calculated columns
 	df['Magnesium Hardness'] = df['Total Hardness'] - df['Calcium Hardness']
 	df['Residual Alkalinity'] = df['Total Alkalinity'] - (df['Calcium Hardness']/3.5 + df['Magnesium Hardness']/7)
