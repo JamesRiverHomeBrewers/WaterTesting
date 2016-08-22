@@ -51,9 +51,9 @@ if __name__ == '__main__':
 	wks = gc.open_by_key("1Z1XF9nabneWBDbFwaovI_n9YcazeNQq4hon1wsIxrus").worksheet('Data')
 	df = DataFrame(wks.get_all_records())
 
-	loc_tmpl = os.path.join('templates', 'summary_sheet.html')
-	index_tmpl = os.path.join('templates', 'base.html')
-
+	loc_tmpl = os.path.join('templates', 'bootstrap_summary_sheet.html')
+	index_tmpl = os.path.join('templates', 'bootstrap_base.html')
+	print(df.columns.values)
 	SO4CL_RATIO = {
 		0: 'Too Malty',
 		0.4: 'Very Malty',
@@ -67,35 +67,36 @@ if __name__ == '__main__':
 		9.01: 'Too Bitter'
 	}
 
-	df['total_hardness'] = df['total_hardness'].apply(pd.to_numeric, args=('coerce',))
-	df['ca_hardness'] = df['ca_hardness'].apply(pd.to_numeric, args=('coerce',))
-	df['total_alkalinity'] = df['total_alkalinity'].apply(pd.to_numeric, args=('coerce',))
-	df['so4'] = df['so4'].apply(pd.to_numeric, args=('coerce',))
-	df['cl'] = df['cl'].apply(pd.to_numeric, args=('coerce',))
+	# Everything is loaded as strings, need to convert to numeric
+	df['Total Hardness'] = df['Total Hardness'].apply(pd.to_numeric, args=('coerce',))
+	df['Calcium Hardness'] = df['Calcium Hardness'].apply(pd.to_numeric, args=('coerce',))
+	df['Total Alkalinity'] = df['Total Alkalinity'].apply(pd.to_numeric, args=('coerce',))
+	df['Sulfate'] = df['Sulfate'].apply(pd.to_numeric, args=('coerce',))
+	df['Chlorine'] = df['Chlorine'].apply(pd.to_numeric, args=('coerce',))
 	
 	# Add calculated columns
-	df['mg_hardness'] = df['total_hardness'] - df['ca_hardness']
-	df['res_alkalinity'] = df['total_alkalinity'] - (df['ca_hardness']/3.5 + df['mg_hardness']/7)
-	df['ca2'] = df['ca_hardness'] * 0.4
-	df['mg2'] = df['mg_hardness'] * 0.25
-	df['hco3'] = df['total_alkalinity'] * 1.22
-	df['so4_cl_ratio'] = df['so4'] / df['cl']
+	df['Magnesium Hardness'] = df['Total Hardness'] - df['Calcium Hardness']
+	df['Residual Alkalinity'] = df['Total Alkalinity'] - (df['Calcium Hardness']/3.5 + df['Magnesium Hardness']/7)
+	df['ca2'] = df['Calcium Hardness'] * 0.4
+	df['mg2'] = df['Magnesium Hardness'] * 0.25
+	df['hco3'] = df['Total Alkalinity'] * 1.22
+	df['so4_cl_ratio'] = df['Sulfate'] / df['Chlorine']
 
 	# Add descriptor from SO4 / Cl Ratio Lookup
 	set_ratio = [min(SO4CL_RATIO.keys(), key=lambda x: abs(x - r)) for r in df['so4_cl_ratio']]
 	ratios = [SO4CL_RATIO[value] for value in set_ratio]
 	
 	df['balance'] = ratios
-	df['sample_date'] = to_datetime(df['sample_date'], format='%Y-%m-%d')
-	df = df.sort_values(by='sample_date')
+	df['Sample Date'] = to_datetime(df['Sample Date'], format='%Y-%m-%d')
+	df = df.sort_values(by='Sample Date')
 
-	locations = df.charting.unique()
+	locations = df['Sample Location'].unique()
 
 	pages = []
 
 	# Headings:
 	#  total_hardness, ca_hardness, mg_hardness
-	#  total_alkalinity, res_alkalinity
+	#  Total Alkalinity, res_alkalinity
 	#  cl, so4, ca2, mg2, hco3                            Ion Concentrations
 	#  so4_cl                                             SO4/Cl ratio
 	#  ph
@@ -105,14 +106,14 @@ if __name__ == '__main__':
 		page_dict['src'] = os.path.join(ABS_LOCATION_DIR, page_dict['slug'] + '.html')
 		page_dict['url'] = LOCATION_DIR + '/' + page_dict['slug'] + '.html'
 
-		filtered = df[df.charting == location]
+		filtered = df[df['Sample Location'] == location]
 
 		## Hardness over time (Total, Ca, Mg)
 		my_plot = LinePlot(
-			filtered['sample_date'],
-			[filtered['ca_hardness'], filtered['mg_hardness']],
+			filtered['Sample Date'],
+			[filtered['Calcium Hardness'], filtered['Magnesium Hardness']],
 			['Ca Hardness', 'Mg Hardness'],
-			filtered['sample_id'],
+			filtered['Sample ID'],
 			page_dict['slug'] + '-hardness'
 		)
 
@@ -127,14 +128,14 @@ if __name__ == '__main__':
 
 		## Ion Concentrations over time (Cl-, SO4-, Ca2+, Mg2+, HCO3-)
 		ion_list = [
-			('cl', 'Cl-'),
-			('so4', 'SO4-'),
+			('Chlorine', 'Cl-'),
+			('Sulfate', 'SO4-'),
 			('ca2', 'Ca2+'),
 			('mg2', 'Mg2+'),
 			('hco3', 'HCO3-'),
 		]
-		dates = filtered['sample_date']
-		ids = filtered['sample_id']
+		dates = filtered['Sample Date']
+		ids = filtered['Sample ID']
 
 		page_dict['ion_png'] = []
 		page_dict['ion_html'] = []
