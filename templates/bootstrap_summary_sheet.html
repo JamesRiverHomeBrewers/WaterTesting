@@ -1,0 +1,43 @@
+{% extends "templates/bootstrap_base.html" %}
+
+{% block title %}{{ thispage.caption }}{% endblock %}
+
+<!-- Navigation Bar Stuff -->
+{% block navbar %}
+<li><a href="../index.html">Home</a></li>
+<li><a href="../#">Test Results</a></li>
+<li><a href="../location/richmond-public-utility.html">Testing Summaries</a></li>
+<li><a href="../#">Contact</a></li>
+{% endblock %}
+
+{% block side_links %}
+{% for page in pages %}
+<p><a href="../{{ page.url|e }}">{{ page.caption|e }}</a></p>
+{% endfor %}
+{% endblock %}
+
+<!-- Start Main Content -->
+{% block content %}
+  <h1>Hardness Plots</h1>
+  <div class=image_block>
+    <a class=image_anchor href={{ thispage.hardness_plt_png }} "align: left; text-align:center;">
+      <figure>
+        <img src={{ thispage.hardness_plt_png }} alt="">
+        <figcaption>Mg Hardness and Ca Hardness</figcaption>
+      </figure>
+    </a>
+  </div>
+
+  <h1>Ion Concentrations</h1>
+  <div class=image_block>
+    {% for ion in thispage.ion_png %}
+    <a class=image_anchor_small href={{ ion[0] }}>
+      <figure "align: left; text-align:center;">
+        <img src={{ ion[0] }} alt="">
+        <figcaption>Plot of {{ ion[1] }}</figcaption>
+      </figure>
+    </a>
+    {% endfor %}
+  </div>
+  {{ unused }}
+{% endblock %}
