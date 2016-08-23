@@ -77,19 +77,6 @@
         width: calc(33% - 2px);
       }
     }
-
-    .fraction {
-        display: inline-block;
-        vertical-align: middle; 
-        margin: 0 0.2em 0.4ex;
-        text-align: center;
-    }
-    .fraction > span {
-        display: block;
-        padding-top: 0.15em;
-    }
-    .fraction span.fdn {border-top: thin solid black;}
-    .fraction span.bar {display: none;}
   </style>
 </head>
 <body>
@@ -97,22 +84,24 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
+      <!-- Hamburger menu for small screens -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="http://www.jrhb.org">James River Homebrewers</a>
     </div>
+
+    <!-- Navigation Items -->
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="../index.html">Home</a></li>
 <li><a href="../report/index.html">Test Results</a></li>
 <li class="active"><a href="../location/richmond.html">Testing Summaries</a></li>
-<li><a href="../#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="https://github.com/GiacofeiHome/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
       </ul>
     </div>
   </div>
@@ -134,7 +123,7 @@
 <h3>Water Hardness</h3>
 <div class="row">
   <div class="col-md-8">
-    <h6 class="align-right">Mg Hardness and Ca Hardness &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Mg Hardness and Ca Hardness &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href=../img/wells-other-hardness.png class="thumbnail">
       <img src=../img/wells-other-hardness.png alt="Water hardness">
     </a>
@@ -144,7 +133,7 @@
 <h3>Water Alkalinity</h3>
 <div class="row">
   <div class="col-md-8">
-    <h6 class="align-right">Total and Residual Alkalinity &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Total and Residual Alkalinity &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href=../img/wells-other-alkalinity.png class="thumbnail">
       <img src=../img/wells-other-alkalinity.png class="figure-img img-fluid" alt="Water alkalinity">
     </a>
@@ -154,31 +143,31 @@
 <h3>Ion Concentrations</h3>
 <div class="row">
     <div class="col-lg-6 col-md-8 thumb">
-    <h6 class="align-right">Chlorine &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Chlorine &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href=../img/wells-other-cl.png class="thumbnail">
       <img src=../img/wells-other-cl.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
     </a>
   </div>
     <div class="col-lg-6 col-md-8 thumb">
-    <h6 class="align-right">Sulfate &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Sulfate &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href=../img/wells-other-so4.png class="thumbnail">
       <img src=../img/wells-other-so4.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
     </a>
   </div>
     <div class="col-lg-6 col-md-8 thumb">
-    <h6 class="align-right">Calcium &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Calcium &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href=../img/wells-other-ca2.png class="thumbnail">
       <img src=../img/wells-other-ca2.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
     </a>
   </div>
     <div class="col-lg-6 col-md-8 thumb">
-    <h6 class="align-right">Magnesium &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Magnesium &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href=../img/wells-other-mg2.png class="thumbnail">
       <img src=../img/wells-other-mg2.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
     </a>
   </div>
     <div class="col-lg-6 col-md-8 thumb">
-    <h6 class="align-right">Bicarbonate &middot <a href="#" >Download csv for plot</a> &middot</h6> 
+    <h6 class="align-right">Bicarbonate &middot <a href="#" >Download csv for plot</a> &middot</h6>
     <a href=../img/wells-other-hco3.png class="thumbnail">
       <img src=../img/wells-other-hco3.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
     </a>

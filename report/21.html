@@ -77,19 +77,6 @@
         width: calc(33% - 2px);
       }
     }
-
-    .fraction {
-        display: inline-block;
-        vertical-align: middle; 
-        margin: 0 0.2em 0.4ex;
-        text-align: center;
-    }
-    .fraction > span {
-        display: block;
-        padding-top: 0.15em;
-    }
-    .fraction span.fdn {border-top: thin solid black;}
-    .fraction span.bar {display: none;}
   </style>
 </head>
 <body>
@@ -97,22 +84,24 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
+      <!-- Hamburger menu for small screens -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="http://www.jrhb.org">James River Homebrewers</a>
     </div>
+
+    <!-- Navigation Items -->
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li><a href="../index.html">Home</a></li>
 <li class="active"><a href="#">Test Results</a></li>
 <li><a href="../location/richmond.html">Testing Summaries</a></li>
-<li><a href="../#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="https://github.com/GiacofeiHome/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
       </ul>
     </div>
   </div>
@@ -132,16 +121,13 @@
         <div class="col-xs-8 col-sm-6">
             <strong>Sample ID Number:</strong> 21<br>
             <strong>Sample Source:</strong> Richmond<br>
-            <strong>Sample Date:</strong> 2014-07-18<br>
-                        <strong>Special Treatment:</strong> nan
                     </div>
         <div class="col-xs-8 col-sm-6">
-            <br><br>
+            <strong>Sample Date:</strong> 2014-07-18<br>
             <strong>Test Date:</strong> 2014-07-18
-            
         </div>
     </div>
-</div>
+    </div>
 </p>
 
 <h3>Alkalinity</h3>
@@ -149,7 +135,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>Total Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;60
+            <strong>Total Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;60.0
         </div>
         <div class="col-xs-8 col-sm-6">
             <strong>Residual Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;32.86
@@ -164,11 +150,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>Total Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;100
+            <strong>Total Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;100.0
         </div>
         <div class="col-xs-8 col-sm-6">
-            <strong>Magnesium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;10<br>
-            <strong>Calcium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;90
+            <strong>Magnesium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;10.0<br>
+            <strong>Calcium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;90.0
         </div>
     </div>
 </div>
@@ -184,8 +170,8 @@
             <strong>HCO<sub>3</sub><sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;73.2<br>
         </div>
         <div class="col-xs-8 col-sm-6">
-            <strong>Cl<sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;30<br>
-            <strong>SO<sub>4</sub><sup>-2</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;65<br>
+            <strong>Cl<sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;30.0<br>
+            <strong>SO<sub>4</sub><sup>-2</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;65.0<br>
         </div>
     </div>
 </div>
@@ -198,7 +184,7 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>pH:</strong> 7.1
+            <strong>pH:</strong> 
         </div>
         <div class="col-xs-8 col-sm-6">
             <strong><sup>SO<sub>4</sub><sup>-2</sup></sup>&frasl;<sub>Cl<sup>-</sup></sub> Ratio:</strong> 2.17<br>

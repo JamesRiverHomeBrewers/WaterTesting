@@ -77,19 +77,6 @@
         width: calc(33% - 2px);
       }
     }
-
-    .fraction {
-        display: inline-block;
-        vertical-align: middle; 
-        margin: 0 0.2em 0.4ex;
-        text-align: center;
-    }
-    .fraction > span {
-        display: block;
-        padding-top: 0.15em;
-    }
-    .fraction span.fdn {border-top: thin solid black;}
-    .fraction span.bar {display: none;}
   </style>
 </head>
 <body>
@@ -97,22 +84,24 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
+      <!-- Hamburger menu for small screens -->
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="http://www.jrhb.org">James River Homebrewers</a>
     </div>
+
+    <!-- Navigation Items -->
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
                 <li class="active"><a href="#">Home</a></li>
         <li><a href="report/index.html">Test Results</a></li>
         <li><a href="location/richmond.html">Testing Summaries</a></li>
-        <li><a href="#">Contact</a></li>
               </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li><a href="https://github.com/GiacofeiHome/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
       </ul>
     </div>
   </div>
@@ -124,30 +113,46 @@
             <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
+      <a href="#">What's Tested?</a>
           </div>
     <div class="col-sm-8 text-left">
             <h1>Welcome</h1>
       <p>
       This is a very rough draft for a water testing website. The only menu item that actually does anything
-      at the moment is the <a href="location/richmond.html">Testing Summaries link</a> which takes 
+      at the moment is the <a href="location/richmond.html">Testing Summaries link</a> which takes
       takes you to a set of pages with time series plot for each water source we have data for.
       </p>
-      <p>
-      Pages for individual test result sheets shoul be here soon...
-      </p>
+
       <hr>
-      <h3>Report Pages</h3>
-      <p>
-      Basic report pages! No site navigation to get to them yet.
-      Examples:
+
+      <h3>Most Recent Test Results</h3>
       <ul>
-        <li><a href="report/51.html">Report #51</a></li>
-        <li><a href="report/52.html">Report #52</a></li>
-        <li><a href="report/53.html">Report #53</a></li>
-        <li><a href="report/54.html">Report #54</a></li>
-        <li><a href="report/55.html">Report #55</a></li>
-      </ul>
-      </p>
+                <li>2016-02-10
+          <a href="report/54.html">
+           Wells / Other Shallow Well
+          </a>
+        </li>
+                <li>2016-02-10
+          <a href="report/55.html">
+           Richmond Public Utility
+          </a>
+        </li>
+                <li>2016-01-12
+          <a href="report/53.html">
+           Wells / Other Shallow Well
+          </a>
+        </li>
+                <li>2015-09-09
+          <a href="report/50.html">
+           Richmond Public Utility
+          </a>
+        </li>
+                <li>2015-09-07
+          <a href="report/52.html">
+           Wells / Other Shallow Well
+          </a>
+        </li>
+              </ul>
           </div>
   </div>
 </div>
