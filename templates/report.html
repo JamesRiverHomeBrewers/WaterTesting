@@ -18,7 +18,6 @@
 <li><a href="../index.html">Home</a></li>
 <li class="active"><a href="#">Test Results</a></li>
 <li><a href="../location/richmond.html">Testing Summaries</a></li>
-<li><a href="../#">Contact</a></li>
 {% endblock %}
 
 {% block side_links %}
@@ -34,17 +33,24 @@
         <div class="col-xs-8 col-sm-6">
             <strong>Sample ID Number:</strong> {{ thispage.sample_id }}<br>
             <strong>Sample Source:</strong> {{ thispage.sample_location }}<br>
-            <strong>Sample Date:</strong> {{ thispage.sample_date }}<br>
-            {% if (thispage.treatment != "nan") %}
+            {% if thispage.treatment != '' %}
             <strong>Special Treatment:</strong> {{ thispage.treatment }}
             {% endif %}
         </div>
         <div class="col-xs-8 col-sm-6">
-            <br><br>
+            <strong>Sample Date:</strong> {{ thispage.sample_date }}<br>
             <strong>Test Date:</strong> {{ thispage.test_date }}
-
         </div>
     </div>
+    {% if thispage.notes != '' %}
+    <hr>
+    <div class="row">
+        <div class="col-xs-8">
+            <strong>Notes:</strong> {{ thispage.notes }}
+        </div>
+    </div>
+    <hr>
+    {% endif %}
 </div>
 </p>
 
