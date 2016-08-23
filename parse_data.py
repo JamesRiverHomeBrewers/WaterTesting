@@ -16,9 +16,6 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 from plotting import StackedArea, LinePlot
 
-os.environ['HTTP_PROXY'] = "http://proxyarray.mazdausa.com:80"
-os.environ['HTTPS_PROXY'] = "http://proxyarray.mazdausa.com:80"
-
 # Directories
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 HTML_ROOT = os.path.join(THIS_DIR, 'html')
@@ -71,6 +68,11 @@ def add_columns(df):
     df = df.rename(columns={
         'Sample ID': 'sample_id',
         'Sample Date': 'sample_date',
+        'Sample Source': 'sample_source',
+        'Source if "Other"': 'source_other',
+        'Sample Treatment': 'treatment',
+        'Sample Notes': 'notes',
+        'Treatment if "Other"': 'treatment_other',
         'Test Date': 'test_date',
         'Sample Location': 'sample_location',
         'Total Hardness': 'total_hardness',
@@ -211,8 +213,6 @@ def build_source_summaries(df, locations):
             page_dict['ion_png'].append([png, ion[1]])
             page_dict['ion_html'].append(html)
 
-        ## SO4/Cl Ratio over time
-
         ## pH over time
 
         source_pages.append(page_dict)
@@ -226,16 +226,15 @@ if __name__ == '__main__':
     index_tmpl = os.path.join('templates', 'bootstrap_base.html')
     report_tmpl = os.path.join('templates', 'report.html')
 
-    #~ # Connect to Google spreadsheet
-    #~ worksheet = connect_sheets(
-        #~ 'client_id.json',
-        #~ '1Z1XF9nabneWBDbFwaovI_n9YcazeNQq4hon1wsIxrus',
-        #~ 'Data'
-    #~ )
+    # Connect to Google spreadsheet
+    worksheet = connect_sheets(
+        'client_id.json',
+        '1Z1XF9nabneWBDbFwaovI_n9YcazeNQq4hon1wsIxrus',
+        'Data'
+    )
 
-    #~ # Dump spreadsheet data into dataframe and add calculated columns
-    #~ df = DataFrame(worksheet.get_all_records())
-    df = read_csv('Data.csv')
+    # Dump spreadsheet data into dataframe and add calculated columns
+    df = DataFrame(worksheet.get_all_records())
     df = add_columns(df)
 
     # List of water sources
@@ -245,6 +244,11 @@ if __name__ == '__main__':
 
     # Convet dataframe to list of dicts for individual records
     report_pages = df.to_dict('records')
+
+    # Get most recent test for main page
+    recent = df.tail(n=5)
+    recent = recent.sort_values(by='sample_date', ascending=False)
+    recent = recent.to_dict('records')
 
     ## Write location source pages
     # source_page keys:
@@ -274,5 +278,6 @@ if __name__ == '__main__':
     ## Make main index
     with open(HTML_ROOT + '/index.html', 'w') as html_file:
         html_file.write(make_html_doc(index_tmpl, {
-            'source_pages': source_pages
+            'source_pages': source_pages,
+            'recent': recent,
         }))
