@@ -3,7 +3,7 @@ Module for loading data form google sheets and dumping it
 into a pandas dataframe.
 
 """
-
+import pandas as pd
 from pandas import read_csv, to_datetime, DataFrame
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
@@ -71,6 +71,13 @@ def add_columns(df):
     df = df.sort_values(by='sample_date')
 
     df = df.round(2)
+
+    return df
+
+
+def load_csv(filename):
+    df = read_csv(filename)
+    df = add_columns(df)
 
     return df
 

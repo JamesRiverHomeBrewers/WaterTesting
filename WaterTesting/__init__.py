@@ -1,4 +1,6 @@
 from flask import Flask
 app = Flask(__name__)
 
-import WaterTesting.views
+app.config.from_object('config.DevelopmentConfig')
+
+from WaterTesting import views

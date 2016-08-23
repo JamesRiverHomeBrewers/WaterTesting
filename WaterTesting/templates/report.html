@@ -1,24 +1,6 @@
-{% extends "templates/bootstrap_base.html" %}
+{% extends "bootstrap_base.html" %}
 
-{% block css %}
-<link rel="stylesheet" href="../stylesheets/bootstrap.css">
-<link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
-<link rel="stylesheet" href="../stylesheets/bootstrap-theme.css">
-<link rel="stylesheet" href="../stylesheets/bootstrap-theme.min.css">
-
-<script src="../js/jquery.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-{% endblock %}
-
-
-{% block title %}{{ thispage.caption }}{% endblock %}
-
-<!-- Navigation Bar Stuff -->
-{% block navbar %}
-<li><a href="../index.html">Home</a></li>
-<li class="active"><a href="#">Test Results</a></li>
-<li><a href="../location/richmond.html">Testing Summaries</a></li>
-{% endblock %}
+{% block title %}{{ report.caption }}{% endblock %}
 
 {% block side_links %}
 <p><a href="#">A Link</a></p>
@@ -31,22 +13,22 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>Sample ID Number:</strong> {{ thispage.sample_id }}<br>
-            <strong>Sample Source:</strong> {{ thispage.sample_location }}<br>
-            {% if thispage.treatment != '' %}
-            <strong>Special Treatment:</strong> {{ thispage.treatment }}
+            <strong>Sample ID Number:</strong> {{ report.sample_id }}<br>
+            <strong>Sample Source:</strong> {{ report.sample_location }}<br>
+            {% if report.treatment != '' %}
+            <strong>Special Treatment:</strong> {{ report.treatment }}
             {% endif %}
         </div>
         <div class="col-xs-8 col-sm-6">
-            <strong>Sample Date:</strong> {{ thispage.sample_date }}<br>
-            <strong>Test Date:</strong> {{ thispage.test_date }}
+            <strong>Sample Date:</strong> {{ report.sample_date }}<br>
+            <strong>Test Date:</strong> {{ report.test_date }}
         </div>
     </div>
-    {% if thispage.notes != '' %}
+    {% if report.notes != '' %}
     <hr>
     <div class="row">
         <div class="col-xs-8">
-            <strong>Notes:</strong> {{ thispage.notes }}
+            <strong>Notes:</strong> {{ report.notes }}
         </div>
     </div>
     <hr>
@@ -59,10 +41,10 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>Total Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.total_alkalinity }}
+            <strong>Total Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.total_alkalinity }}
         </div>
         <div class="col-xs-8 col-sm-6">
-            <strong>Residual Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.res_alkalinity }}
+            <strong>Residual Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.res_alkalinity }}
         </div>
     </div>
 </div>
@@ -74,11 +56,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>Total Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.total_hardness }}
+            <strong>Total Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.total_hardness }}
         </div>
         <div class="col-xs-8 col-sm-6">
-            <strong>Magnesium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.mg_hardness }}<br>
-            <strong>Calcium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.ca_hardness }}
+            <strong>Magnesium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.mg_hardness }}<br>
+            <strong>Calcium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.ca_hardness }}
         </div>
     </div>
 </div>
@@ -89,13 +71,13 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>Ca<sub>2</sub><sup>+</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.ca2 }}<br>
-            <strong>Mg<sub>2</sub><sup>+</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.mg2 }}<br>
-            <strong>HCO<sub>3</sub><sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.hco3 }}<br>
+            <strong>Ca<sub>2</sub><sup>+</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.ca2 }}<br>
+            <strong>Mg<sub>2</sub><sup>+</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.mg2 }}<br>
+            <strong>HCO<sub>3</sub><sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.hco3 }}<br>
         </div>
         <div class="col-xs-8 col-sm-6">
-            <strong>Cl<sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.cl }}<br>
-            <strong>SO<sub>4</sub><sup>-2</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ thispage.so4 }}<br>
+            <strong>Cl<sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.cl }}<br>
+            <strong>SO<sub>4</sub><sup>-2</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.so4 }}<br>
         </div>
     </div>
 </div>
@@ -108,11 +90,11 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-8 col-sm-6">
-            <strong>pH:</strong> {{ thispage.ph }}
+            <strong>pH:</strong> {{ report.ph }}
         </div>
         <div class="col-xs-8 col-sm-6">
-            <strong><sup>SO<sub>4</sub><sup>-2</sup></sup>&frasl;<sub>Cl<sup>-</sup></sub> Ratio:</strong> {{ thispage.so4_cl_ratio }}<br>
-            <strong>Balance:</strong> {{ thispage.balance }}
+            <strong><sup>SO<sub>4</sub><sup>-2</sup></sup>&frasl;<sub>Cl<sup>-</sup></sub> Ratio:</strong> {{ report.so4_cl_ratio }}<br>
+            <strong>Balance:</strong> {{ report.balance }}
         </div>
     </div>
 </div>
