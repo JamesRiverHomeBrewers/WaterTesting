@@ -66,7 +66,7 @@ class LinePlot(Plot):
         area line charts.
     """
 
-    def plot(self, legend=True):
+    def plot(self, path, legend=True):
         fontP = FontProperties()
         fontP.set_size('xx-small')
         color_select = tableau20[:len(self.y)]
@@ -102,8 +102,7 @@ class LinePlot(Plot):
         html = None
         # Save png image
         img_file = '{}.png'.format(self.title)
-        img_path = os.path.join('html', 'img')
-        plt.savefig(os.path.join(img_path, img_file), bbox_inches='tight')
+        plt.savefig(os.path.join(path, img_file), bbox_inches='tight')
 
         plt.close()
 

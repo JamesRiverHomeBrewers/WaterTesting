@@ -8,6 +8,9 @@ class BaseConfig(object):
     GOOGLE_SHEET_ID = '1Z1XF9nabneWBDbFwaovI_n9YcazeNQq4hon1wsIxrus'
     GOOGLE_SHEET_TAB = 'Data'
 
+    FREEZER_DESTINATION = os.path.join(ROOT_DIR, 'html')
+    FREEZER_RELATIVE_URLS = True 
+
 class DevelopmentConfig(BaseConfig):
     DATA_FILE = os.path.join(ROOT_DIR, 'WaterTesting', 'data.csv')
     DEBUG = True

@@ -8,13 +8,12 @@ import os
 import pandas as pd
 from pandas import read_csv, to_datetime, DataFrame
 #import numpy as np
-from slugify import UniqueSlugify
+from slugify import Slugify
 from jinja2 import Environment, FileSystemLoader
 from PIL import Image, ImageChops
 
 # Custom modules
-import gsload
-from plotting import StackedArea, LinePlot
+from WaterTesting.plotting import StackedArea, LinePlot
 
 # Directories
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -24,7 +23,7 @@ ABS_LOC_PATH = os.path.join(HTML_ROOT, LOC_PATH)
 LOC_REPORT = 'report'
 ABS_REPORT_PATH = os.path.join(HTML_ROOT, LOC_REPORT)
 
-SLUG = UniqueSlugify(to_lower=True)
+SLUG = Slugify(to_lower=True)
 
 
 def trim(path):
@@ -45,94 +44,85 @@ def make_html_doc(template, content):
     return j2_env.get_template(template).render(content)
 
 
-def build_source_summaries(df, locations):
-    source_pages = []
+def build_source_summary(df, location, img_path):
+    page_dict = {
+        'caption': df['sample_location'].unique()[0],
+        'slug': SLUG(location)
+    }
 
-    for location in locations:
-        page_dict = {'caption': location}
-        page_dict['slug'] = SLUG(location)
-        page_dict['src'] = os.path.join(
-            ABS_LOC_PATH, page_dict['slug'] + '.html'
-        )
-        page_dict['url'] = LOC_PATH + '/' + page_dict['slug'] + '.html'
+    ## Water hardness plot
+    x_data = df['sample_date']
+    series = ['ca_hardness', 'mg_hardness', 'total_hardness']
+    y_data = [df[col] for col in series]
+    ids = df['sample_id']
 
-        filtered = df[df['sample_location'] == location]
+    plot = LinePlot(
+        x_data,
+        y_data,
+        series,
+        ids,
+        page_dict['slug'] + '-hardness'
+    )
 
-        ## Hardness over time (Total, Ca, Mg)
-        x_data = filtered['sample_date']
-        series = ['ca_hardness', 'mg_hardness', 'total_hardness']
-        y_data = [filtered[col] for col in series]
-        ids = filtered['sample_id']
+    png, js = plot.plot(img_path)
+    trim(os.path.join(img_path, png))
 
+    page_dict['hardness_png'] = png
+
+
+
+
+    ## Alkalinity over time (Total, Residual)
+    series = ['total_alkalinity', 'res_alkalinity']
+    y_data = [df[col] for col in series]
+    ids = df['sample_id']
+
+    my_plot = LinePlot(
+        x_data,
+        y_data,
+        series,
+        ids,
+        page_dict['slug'] + '-alkalinity'
+    )
+
+    png, js = my_plot.plot(img_path)
+    trim(os.path.join(img_path, png))
+
+    page_dict['alkalinity_png'] = png
+
+    
+
+    ## Ion Concentrations over time (Cl-, SO4-, Ca2+, Mg2+, HCO3-)
+    ion_list = [
+        ('cl', 'Chlorine'),
+        ('so4', 'Sulfate'),
+        ('ca2', 'Calcium'),
+        ('mg2', 'Magnesium'),
+        ('hco3', 'Bicarbonate'),
+    ]
+
+    page_dict['ion_png_list'] = []
+    page_dict['ion_html_list'] = []
+
+    for ion in ion_list:
         my_plot = LinePlot(
             x_data,
-            y_data,
-            series,
+            [df[ion[0]]],
+            [ion[1]],
             ids,
-            page_dict['slug'] + '-hardness'
+            page_dict['slug'] + '-' + ion[0]
         )
 
-        png, html = my_plot.plot()
+        png, js = my_plot.plot(img_path, legend=False)
+        trim(os.path.join(img_path, png))
 
-        # Relative path for source locatin pages
-        page_dict['hardness_png'] = os.path.join('..', 'img', png)
+        page_dict['ion_png_list'].append([png, ion[1]])
+        page_dict['ion_html_list'].append([js, ion[1]])
 
-        trim(os.path.join('html', 'img', page_dict['hardness_png']))
+    ## pH over time
 
-        ## Alkalinity over time (Total, Residual)
-        series = ['total_alkalinity', 'res_alkalinity']
-        y_data = [filtered[col] for col in series]
-        ids = filtered['sample_id']
 
-        my_plot = LinePlot(
-            x_data,
-            y_data,
-            series,
-            ids,
-            page_dict['slug'] + '-alkalinity'
-        )
-
-        png, html = my_plot.plot()
-
-        # Relative path for source locatin pages
-        page_dict['alkalinity_png'] = os.path.join('..', 'img', png)
-
-        trim(os.path.join('html', 'img', page_dict['alkalinity_png']))
-
-        ## Ion Concentrations over time (Cl-, SO4-, Ca2+, Mg2+, HCO3-)
-        ion_list = [
-            ('cl', 'Chlorine'),
-            ('so4', 'Sulfate'),
-            ('ca2', 'Calcium'),
-            ('mg2', 'Magnesium'),
-            ('hco3', 'Bicarbonate'),
-        ]
-
-        page_dict['ion_png'] = []
-        page_dict['ion_html'] = []
-
-        for ion in ion_list:
-            my_plot = LinePlot(
-                x_data,
-                [filtered[ion[0]]],
-                [ion[1]],
-                ids,
-                page_dict['slug'] + '-' + ion[0]
-            )
-
-            png, html = my_plot.plot(legend=False)
-
-            trim(os.path.join('html', 'img', png))
-
-            png = os.path.join('..', 'img', png)
-            page_dict['ion_png'].append([png, ion[1]])
-            page_dict['ion_html'].append(html)
-
-        ## pH over time
-
-        source_pages.append(page_dict)
-
-    return source_pages
+    return page_dict
 
 
 if __name__ == '__main__':
