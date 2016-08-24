@@ -7,6 +7,9 @@ import pandas as pd
 from pandas import read_csv, to_datetime, DataFrame
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from slugify import Slugify
+
+SLUG = Slugify(to_lower=True)
 
 SO4CL_RATIO = {
     0: 'Too Malty',
@@ -67,6 +70,8 @@ def add_columns(df):
 
     df['sample_date'] = to_datetime(df['sample_date'], format='%m/%d/%Y').dt.date
     df['test_date'] = to_datetime(df['test_date'], format='%m/%d/%Y').dt.date
+
+    df['slug'] = [SLUG(x) for x in df['sample_location']]
 
     df = df.sort_values(by='sample_date')
 

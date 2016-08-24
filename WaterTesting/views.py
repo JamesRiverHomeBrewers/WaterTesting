@@ -35,7 +35,7 @@ def index():
 
 
 # Setting route to test result
-@app.route('/result/<int:sample_id>')
+@app.route('/result/<int:sample_id>/')
 def result(sample_id):
     test_result = df[df['sample_id'] == sample_id]
 
@@ -49,16 +49,16 @@ def result(sample_id):
 
 
 # Setting route to test result
-@app.route('/result/index')
+@app.route('/result/index/')
 def result_index():
-    return 'Index Needed Here.'
+    return 'ToDo'
 
 # Setting route to location summary page with plots
-@app.route('/location/<location>')
+@app.route('/location/<location>/')
 def summary(location):
     img_dir = os.path.join(ROOT_DIR, 'static', 'img')
-    
-    loc_df = df[df["sample_location"].str.contains(location, case=False)]
+
+    loc_df = df[df["slug"] == location]
     
     locations = [(SLUG(x), x) for x in df['sample_location'].unique()]
 
@@ -71,5 +71,5 @@ def summary(location):
     if summary == None:
         flash('Location data not found for {}.'.format(location))
         return redirect(url_for('index'))
-    print(summary)
+
     return render_template('location.html', summary=summary, pages=locations )
