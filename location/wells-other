@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Wells / Other - JRHB Water Testing</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../static/css/bootstrap.css">
+  <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/bootstrap-theme.css">
+  <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+
+  <script src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    img {
+      max-width: 100%;
+    }
+    .image_block {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;  or space-around
+    }
+    .image_anchor {
+      display: inline-block;
+      margin-bottom: 4px;
+      width: calc(100% - 2px);
+    }
+    .image_anchor_small {
+      display: inline-block;
+      margin-bottom: 4px;
+      width: calc(100% - 2px);
+    }
+    @media screen and (min-width: 50em) {
+      .image_anchor {
+        width: calc(100% - 2px);
+      }
+      .image_anchor_small {
+        width: calc(50% - 2px);
+      }
+    }
+    @media screen and (min-width: 80em) {
+      .image_anchor {
+        width: calc(100% - 2px);
+      }
+      .image_anchor_small {
+        width: calc(33% - 2px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- Hamburger menu for small screens -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.jrhb.org">James River Homebrewers</a>
+    </div>
+
+    <!-- Navigation Items -->
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="../index.html">Home</a></li>
+        <li><a href="../result/index">Test Results</a></li>
+        <li><a href="richmond">Testing Summaries</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/GiacofeiHome/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      
+
+<a class="btn btn-primary btn-sm btn-block" href="richmond" role="button">Richmond</a>
+
+<a class="btn btn-primary btn-sm btn-block" href="chesterfield" role="button">Chesterfield</a>
+
+<a class="btn btn-primary btn-sm btn-block" href="wells-other" role="button">Wells / Other</a>
+
+<a class="btn btn-primary btn-sm btn-block" href="newport-news" role="button">Newport News</a>
+
+<a class="btn btn-primary btn-sm btn-block" href="hopewell" role="button">Hopewell</a>
+
+
+    </div>
+    <div class="col-sm-8 text-left">
+      
+<h1>Wells / Other</h1>
+<hr>
+
+<h3>Water Hardness</h3>
+<div class="row">
+  <div class="col-md-8">
+    <h6 class="align-right">Mg Hardness and Ca Hardness &middot <a href="#" >Download csv for plot</a> &middot</h6>
+    <a href=../static/img/wells-other-hardness.png class="thumbnail">
+      <img src=../static/img/wells-other-hardness.png alt="Water hardness">
+    </a>
+  </div>
+</div>
+
+<h3>Water Alkalinity</h3>
+<div class="row">
+  <div class="col-md-8">
+    <h6 class="align-right">Total and Residual Alkalinity &middot <a href="#" >Download csv for plot</a> &middot</h6>
+    <a href=../static/img/wells-other-alkalinity.png class="thumbnail">
+      <img src=../static/img/wells-other-alkalinity.png class="figure-img img-fluid" alt="Water alkalinity">
+    </a>
+  </div>
+</div>
+
+<h3>Ion Concentrations</h3>
+<div class="row">
+  
+  <div class="col-lg-6 col-md-8 thumb">  
+    <h6 class="align-right">Chlorine &middot <a href="#" >Download csv for plot</a> &middot</h6>
+    <a href=../static/img/wells-other-cl.png class="thumbnail">
+      <img src=../static/img/wells-other-cl.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
+    </a>
+  </div>
+  
+  <div class="col-lg-6 col-md-8 thumb">  
+    <h6 class="align-right">Sulfate &middot <a href="#" >Download csv for plot</a> &middot</h6>
+    <a href=../static/img/wells-other-so4.png class="thumbnail">
+      <img src=../static/img/wells-other-so4.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
+    </a>
+  </div>
+  
+  <div class="col-lg-6 col-md-8 thumb">  
+    <h6 class="align-right">Calcium &middot <a href="#" >Download csv for plot</a> &middot</h6>
+    <a href=../static/img/wells-other-ca2.png class="thumbnail">
+      <img src=../static/img/wells-other-ca2.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
+    </a>
+  </div>
+  
+  <div class="col-lg-6 col-md-8 thumb">  
+    <h6 class="align-right">Magnesium &middot <a href="#" >Download csv for plot</a> &middot</h6>
+    <a href=../static/img/wells-other-mg2.png class="thumbnail">
+      <img src=../static/img/wells-other-mg2.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
+    </a>
+  </div>
+  
+  <div class="col-lg-6 col-md-8 thumb">  
+    <h6 class="align-right">Bicarbonate &middot <a href="#" >Download csv for plot</a> &middot</h6>
+    <a href=../static/img/wells-other-hco3.png class="thumbnail">
+      <img src=../static/img/wells-other-hco3.png class="figure-img img-fluid img-responsive" alt="Water alkalinity">
+    </a>
+  </div>
+  
+</div>
+
+  
+
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
