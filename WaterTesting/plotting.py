@@ -7,9 +7,9 @@ import matplotlib.patches as mpatches
 from matplotlib.font_manager import FontProperties
 import mpld3
 from mpld3 import plugins
-import numpy as np
+#import numpy as np
 import sys, os
-
+from PIL import Image, ImageChops
 
 # These are the "Tableau 20" colors as RGB.
 tableau20 = [(31, 119, 180), (174, 199, 232), (255, 127, 14), (255, 187, 120),
@@ -49,6 +49,16 @@ class Plot():
     def plot(self):
         """ Dummy function needs to be implemented. """
         pass
+
+    def _trim(self, path):
+        im = Image.open(path)
+
+        bg = Image.new(im.mode, im.size, im.getpixel((0, 0)))
+        diff = ImageChops.difference(im, bg)
+        diff = ImageChops.add(diff, diff, 2.0, -100)
+        bbox = diff.getbbox()
+        if bbox:
+            im.save(path)
 
 
 class StackedArea(Plot):
@@ -98,11 +108,13 @@ class LinePlot(Plot):
 
         ax.figure.autofmt_xdate()
         # Generate the plot HTML
-        #html = mpld3.fig_to_html(fig)
-        html = None
+        html = mpld3.fig_to_html(fig)
+        #html = None
+
         # Save png image
         img_file = '{}.png'.format(self.title)
         plt.savefig(os.path.join(path, img_file), bbox_inches='tight')
+        self._trim(os.path.join(path, img_file))
 
         plt.close()
 
