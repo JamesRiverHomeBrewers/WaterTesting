@@ -40,6 +40,7 @@ var/
 .installed.cfg
 *.egg
 html/
+WaterTesting/static/img
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

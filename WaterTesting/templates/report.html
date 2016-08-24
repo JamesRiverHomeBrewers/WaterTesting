@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}{{ report.caption }}{% endblock %}
+
+{% block side_links %}
+<p><a href="#">A Link</a></p>
+{% endblock %}
+
+{% block content %}
+<h1>Sample Report Sheet</h1>
+<p>
+<h3>Sample Info</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-sm-6">
+            <strong>Sample ID Number:</strong> {{ report.sample_id }}<br>
+            <strong>Sample Source:</strong> {{ report.sample_location }}<br>
+            {% if report.treatment != '' %}
+            <strong>Special Treatment:</strong> {{ report.treatment }}
+            {% endif %}
+        </div>
+        <div class="col-xs-8 col-sm-6">
+            <strong>Sample Date:</strong> {{ report.sample_date }}<br>
+            <strong>Test Date:</strong> {{ report.test_date }}
+        </div>
+    </div>
+    {% if report.notes != '' %}
+    <hr>
+    <div class="row">
+        <div class="col-xs-8">
+            <strong>Notes:</strong> {{ report.notes }}
+        </div>
+    </div>
+    <hr>
+    {% endif %}
+</div>
+</p>
+
+<h3>Alkalinity</h3>
+<p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-sm-6">
+            <strong>Total Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.total_alkalinity }}
+        </div>
+        <div class="col-xs-8 col-sm-6">
+            <strong>Residual Alkalinity:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.res_alkalinity }}
+        </div>
+    </div>
+</div>
+
+</p>
+
+<h3>Water Hardness</h3>
+<p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-sm-6">
+            <strong>Total Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.total_hardness }}
+        </div>
+        <div class="col-xs-8 col-sm-6">
+            <strong>Magnesium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.mg_hardness }}<br>
+            <strong>Calcium Hardness:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.ca_hardness }}
+        </div>
+    </div>
+</div>
+</p>
+
+<h3>Ion Concentrations</h3>
+<p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-sm-6">
+            <strong>Ca<sub>2</sub><sup>+</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.ca2 }}<br>
+            <strong>Mg<sub>2</sub><sup>+</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.mg2 }}<br>
+            <strong>HCO<sub>3</sub><sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.hco3 }}<br>
+        </div>
+        <div class="col-xs-8 col-sm-6">
+            <strong>Cl<sup>-</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.cl }}<br>
+            <strong>SO<sub>4</sub><sup>-2</sup>:</strong>&nbsp;&nbsp;&nbsp;&nbsp;{{ report.so4 }}<br>
+        </div>
+    </div>
+</div>
+
+</p>
+
+
+<h3>Other Info</h3>
+<p>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-8 col-sm-6">
+            <strong>pH:</strong> {{ report.ph }}
+        </div>
+        <div class="col-xs-8 col-sm-6">
+            <strong><sup>SO<sub>4</sub><sup>-2</sup></sup>&frasl;<sub>Cl<sup>-</sup></sub> Ratio:</strong> {{ report.so4_cl_ratio }}<br>
+            <strong>Balance:</strong> {{ report.balance }}
+        </div>
+    </div>
+</div>
+</p>
+
+{% endblock %}

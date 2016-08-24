@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block title %}{{ summary.caption }}{% endblock %}
+
+{% block sidenav %}
+{% for page in pages %}
+<a class="btn btn-primary btn-sm btn-block" href="{{ url_for('summary', location=page[0]) }}" role="button">{{ page[1] }}</a>
+{% endfor %}
+{% endblock %}
+
+<!-- Start Main Content -->
+{% block content %}
+<h1>{{ summary.caption }}</h1>
+<hr>
+
+
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <h3>Hardness</h3>
+    <a href={{ url_for('static', filename='img/'+summary.hardness_png ) }} class="thumbnail">
+<!--
+      {{ summary.hardness_js|safe }}
+-->
+      <img src={{ url_for('static', filename='img/'+summary.hardness_png ) }} alt="Water hardness">
+    </a>
+    <h6 class="align-right">Mg Hardness and Ca Hardness &middot <a href="#" >Download csv for plot</a> &middot</h6>
+  </div>
+
+
+  <div class="col-md-6 col-sm-12">
+    <h3>Alkalinity</h3>
+    <a href={{ url_for('static', filename='img/'+summary.alkalinity_png ) }} class="thumbnail">
+      <img src={{ url_for('static', filename='img/'+summary.alkalinity_png ) }} class="figure-img img-fluid" alt="Water alkalinity">
+    </a>
+    <h6 class="align-right">Total and Residual Alkalinity &middot <a href="#" >Download csv for plot</a> &middot</h6>
+  </div>
+</div>
+
+<h2>Ion Concentrations</h2>
+<div class="row">
+  {% for ion in summary.ion_png_list %}
+  <div class="col-lg-4 col-md-6 col-sm-12 thumb">
+    <h3>{{ ion[1] }}</h3>
+    <a href={{ url_for('static', filename='img/'+ion[0] ) }} class="thumbnail">
+      <img src={{ url_for('static', filename='img/'+ion[0] ) }} class="figure-img img-fluid img-responsive" alt="Water alkalinity">
+    </a>
+    <h6 class="align-right">{{ ion[1] }} &middot <a href="#" >Download csv for plot</a> &middot</h6>
+  </div>
+  {% endfor %}
+</div>
+
+  {{ unused }}
+{% endblock %}

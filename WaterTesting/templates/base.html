@@ -4,15 +4,14 @@
   <title>{% block title %}Water Testing{% endblock %} - JRHB Water Testing</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	{% block css %}
-  <link rel="stylesheet" href="stylesheets/bootstrap.css">
-  <link rel="stylesheet" href="stylesheets/bootstrap.min.css">
-  <link rel="stylesheet" href="stylesheets/bootstrap-theme.css">
-  <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
 
-  <script src="js/jquery.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-	{% endblock %}
+  <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
@@ -98,11 +97,9 @@
     <!-- Navigation Items -->
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        {% block navbar %}
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="report/index.html">Test Results</a></li>
-        <li><a href="location/richmond.html">Testing Summaries</a></li>
-        {% endblock %}
+        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('result_index') }}">Test Results</a></li>
+        <li><a href="{{ url_for('summary', location='richmond') }}">Testing Summaries</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://github.com/GiacofeiHome/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
@@ -114,35 +111,16 @@
 <div class="container-fluid text-center">
   <div class="row content">
     <div class="col-sm-2 sidenav">
-      {% block side_links %}
+      {% block sidenav %}
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
+      
       <a href="#">What's Tested?</a>
       {% endblock %}
     </div>
     <div class="col-sm-8 text-left">
-      {% block content %}
-      <h1>Welcome</h1>
-      <p>
-      This is a very rough draft for a water testing website. The only menu item that actually does anything
-      at the moment is the <a href="location/richmond.html">Testing Summaries link</a> which takes
-      takes you to a set of pages with time series plot for each water source we have data for.
-      </p>
-
-      <hr>
-
-      <h3>Most Recent Test Results</h3>
-      <ul>
-        {% for record in recent %}
-        <li>{{ record.sample_date }}
-          <a href="report/{{ record.sample_id }}.html">
-           {{ record.sample_location }} {{ record.sample_source }}
-          </a>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endblock %}
+      {% block content %}{% endblock %}
     </div>
   </div>
 </div>
