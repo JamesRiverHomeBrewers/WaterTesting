@@ -95,11 +95,12 @@
     </div>
 
     <!-- Navigation Items -->
+    {% set active_page = active_page|default('index') -%}
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
-        <li><a href="{{ url_for('result_index') }}">Test Results</a></li>
-        <li><a href="{{ url_for('summary', location='richmond') }}">Testing Summaries</a></li>
+        <li {% if active_page == 'index' %} class="active"{% endif%}><a href="{{ url_for('index') }}">Home</a></li>
+        <li {% if active_page == 'report' %}><a href="{{ url_for('result_index') }}">Test Results</a></li>
+        <li {% if active_page == 'location' %}><a href="{{ url_for('summary', location='richmond') }}">Testing Summaries</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="https://github.com/GiacofeiHome/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
@@ -120,6 +121,7 @@
       {% endblock %}
     </div>
     <div class="col-sm-8 text-left">
+      <!-- Main page content goes here -->
       {% block content %}{% endblock %}
     </div>
   </div>
