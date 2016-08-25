@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% set active_page = "report" %}
+
+{% block content %}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Location</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for record in records %}
+    <tr class='clickable-row' data-href="{{ url_for('result', sample_id=record.sample_id) }}">
+      <td>{{ record.sample_date }}</th>
+      <td>{{ record.sample_location }} {{ record.sample_source }}</th>
+      <td>{{ record.sample_id }}</th>    
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>
+{% endblock %}

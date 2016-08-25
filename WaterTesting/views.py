@@ -49,9 +49,10 @@ def result(sample_id):
 
 
 # Setting route to test result
-@app.route('/result/index/')
+@app.route('/result/')
 def result_index():
-    return 'ToDo'
+    records = df.sort_values(by='sample_date', ascending=False).to_dict('records')
+    return render_template('result_index.html', records=records )
 
 # Setting route to location summary page with plots
 @app.route('/location/<location>/')
