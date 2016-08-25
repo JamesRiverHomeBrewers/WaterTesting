@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Water Testing - JRHB Water Testing</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="../static/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css">
+
+  <script src="../static/js/jquery.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <style>
+    
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <!-- Hamburger menu for small screens -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://www.jrhb.org">James River Home Brewers</a>
+    </div>
+
+    <!-- Navigation Items -->
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li ><a href="../index.html">Home</a></li>
+        <li  class="active"><a href="index.html">Test Results</a></li>
+        <li ><a href="../location/richmond/index.html">Testing Summaries</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="https://github.com/JamesRiverHomeBrewers/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid text-center">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      
+      <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
+      <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
+      <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
+      <br>
+      <a href="#">What's Tested?</a>
+      
+    </div>
+    <div class="col-sm-10 text-left">
+      <!-- Main page content goes here -->
+      
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Location</th>
+      <th>ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr class='clickable-row' data-href="55/index.html">
+      <td>2016-02-10</th>
+      <td>Richmond Public Utility</th>
+      <td>55</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="54/index.html">
+      <td>2016-02-10</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>54</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="53/index.html">
+      <td>2016-01-12</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>53</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="50/index.html">
+      <td>2015-09-09</th>
+      <td>Richmond Public Utility</th>
+      <td>50</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="52/index.html">
+      <td>2015-09-07</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>52</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="51/index.html">
+      <td>2015-09-07</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>51</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="47/index.html">
+      <td>2015-05-13</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>47</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="48/index.html">
+      <td>2015-05-12</th>
+      <td>Hopewell Public Utility</th>
+      <td>48</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="49/index.html">
+      <td>2015-05-09</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>49</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="46/index.html">
+      <td>2015-04-08</th>
+      <td>Richmond Public Utility</th>
+      <td>46</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="45/index.html">
+      <td>2015-04-06</th>
+      <td>Richmond Public Utility</th>
+      <td>45</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="44/index.html">
+      <td>2015-04-02</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>44</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="43/index.html">
+      <td>2015-03-07</th>
+      <td>Richmond Public Utility</th>
+      <td>43</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="42/index.html">
+      <td>2015-02-11</th>
+      <td>Richmond Public Utility</th>
+      <td>42</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="41/index.html">
+      <td>2015-01-31</th>
+      <td>Richmond Public Utility</th>
+      <td>41</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="40/index.html">
+      <td>2014-12-22</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>40</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="36/index.html">
+      <td>2014-11-22</th>
+      <td>Richmond Public Utility</th>
+      <td>36</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="39/index.html">
+      <td>2014-11-15</th>
+      <td>Wells / Other Public Utility</th>
+      <td>39</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="38/index.html">
+      <td>2014-11-15</th>
+      <td>Wells / Other Public Utility</th>
+      <td>38</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="35/index.html">
+      <td>2014-11-12</th>
+      <td>Wells / Other Public Utility</th>
+      <td>35</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="34/index.html">
+      <td>2014-11-11</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>34</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="37/index.html">
+      <td>2014-11-08</th>
+      <td>Chesterfield Public Utility</th>
+      <td>37</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="33/index.html">
+      <td>2014-10-25</th>
+      <td>Richmond Public Utility</th>
+      <td>33</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="32/index.html">
+      <td>2014-10-08</th>
+      <td>Richmond Public Utility</th>
+      <td>32</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="31/index.html">
+      <td>2014-10-08</th>
+      <td>Wells / Other Spring Water</th>
+      <td>31</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="29/index.html">
+      <td>2014-10-08</th>
+      <td>Wells / Other Artesian Well</th>
+      <td>29</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="30/index.html">
+      <td>2014-10-04</th>
+      <td>Wells / Other Artesian Well</th>
+      <td>30</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="28/index.html">
+      <td>2014-09-20</th>
+      <td>Richmond Public Utility</th>
+      <td>28</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="27/index.html">
+      <td>2014-09-10</th>
+      <td>Wells / Other Artesian Well</th>
+      <td>27</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="26/index.html">
+      <td>2014-09-10</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>26</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="25/index.html">
+      <td>2014-08-22</th>
+      <td>Richmond Public Utility</th>
+      <td>25</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="24/index.html">
+      <td>2014-08-19</th>
+      <td>Newport News Public Utility</th>
+      <td>24</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="23/index.html">
+      <td>2014-08-13</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>23</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="22/index.html">
+      <td>2014-07-18</th>
+      <td>Wells / Other Diamond Springs Bottled Water</th>
+      <td>22</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="21/index.html">
+      <td>2014-07-18</th>
+      <td>Richmond Public Utility</th>
+      <td>21</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="20/index.html">
+      <td>2014-07-09</th>
+      <td>Wells / Other Artesian Well</th>
+      <td>20</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="19/index.html">
+      <td>2014-07-09</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>19</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="18/index.html">
+      <td>2014-06-11</th>
+      <td>Richmond Public Utility</th>
+      <td>18</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="17/index.html">
+      <td>2014-06-11</th>
+      <td>Chesterfield Public Utility</th>
+      <td>17</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="16/index.html">
+      <td>2014-05-18</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>16</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="15/index.html">
+      <td>2014-05-18</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>15</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="14/index.html">
+      <td>2014-05-14</th>
+      <td>Richmond Public Utility</th>
+      <td>14</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="13/index.html">
+      <td>2014-05-14</th>
+      <td>Richmond Public Utility</th>
+      <td>13</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="12/index.html">
+      <td>2014-05-14</th>
+      <td>Chesterfield Public Utility</th>
+      <td>12</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="10/index.html">
+      <td>2014-05-14</th>
+      <td>Richmond Public Utility</th>
+      <td>10</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="8/index.html">
+      <td>2014-05-14</th>
+      <td>Richmond Public Utility</th>
+      <td>8</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="7/index.html">
+      <td>2014-05-14</th>
+      <td>Richmond Public Utility</th>
+      <td>7</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="6/index.html">
+      <td>2014-05-14</th>
+      <td>Wells / Other Shallow Well</th>
+      <td>6</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="11/index.html">
+      <td>2014-05-13</th>
+      <td>Richmond Public Utility</th>
+      <td>11</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="9/index.html">
+      <td>2014-05-13</th>
+      <td>Richmond Public Utility</th>
+      <td>9</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="5/index.html">
+      <td>2014-05-01</th>
+      <td>Richmond Public Utility</th>
+      <td>5</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="4/index.html">
+      <td>2014-04-09</th>
+      <td>Chesterfield Public Utility</th>
+      <td>4</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="3/index.html">
+      <td>2014-04-09</th>
+      <td>Richmond Public Utility</th>
+      <td>3</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="2/index.html">
+      <td>2014-04-09</th>
+      <td>Richmond Public Utility</th>
+      <td>2</th>    
+    </tr>
+    
+    <tr class='clickable-row' data-href="1/index.html">
+      <td>2014-03-20</th>
+      <td>Richmond Public Utility</th>
+      <td>1</th>    
+    </tr>
+    
+  </tbody>
+</table>
+
+<script>
+jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.document.location = $(this).data("href");
+    });
+});
+</script>
+
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <p>Footer Text</p>
+</footer>
+
+</body>
+</html>
