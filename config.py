@@ -16,7 +16,7 @@ class ProductionConfig(BaseConfig):
 
 
 class DevelopmentConfig(BaseConfig):
-    DATA_FILE = os.path.join(ROOT_DIR, 'WaterTesting', 'data.csv')
+    DATA_FILE = os.path.join(ROOT_DIR, 'data.csv')
     DEBUG = True
     TESTING = True
 
