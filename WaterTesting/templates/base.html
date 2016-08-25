@@ -4,21 +4,20 @@
   <title>{% block title %}Water Testing{% endblock %} - JRHB Water Testing</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
 
   <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
   <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <style>
+    {% block css %}
     /* Remove the navbar's default margin-bottom and rounded borders */
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
-
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
     .row.content {height: 450px}
 
@@ -44,40 +43,7 @@
       }
       .row.content {height:auto;}
     }
-    img {
-      max-width: 100%;
-    }
-    .image_block {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;  or space-around
-    }
-    .image_anchor {
-      display: inline-block;
-      margin-bottom: 4px;
-      width: calc(100% - 2px);
-    }
-    .image_anchor_small {
-      display: inline-block;
-      margin-bottom: 4px;
-      width: calc(100% - 2px);
-    }
-    @media screen and (min-width: 50em) {
-      .image_anchor {
-        width: calc(100% - 2px);
-      }
-      .image_anchor_small {
-        width: calc(50% - 2px);
-      }
-    }
-    @media screen and (min-width: 80em) {
-      .image_anchor {
-        width: calc(100% - 2px);
-      }
-      .image_anchor_small {
-        width: calc(33% - 2px);
-      }
-    }
+    {% endblock %}
   </style>
 </head>
 <body>
@@ -91,7 +57,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="http://www.jrhb.org">James River Homebrewers</a>
+      <a class="navbar-brand" href="http://www.jrhb.org">James River Home Brewers</a>
     </div>
 
     <!-- Navigation Items -->
@@ -99,11 +65,11 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
         <li {% if active_page == 'index' %} class="active"{% endif%}><a href="{{ url_for('index') }}">Home</a></li>
-        <li {% if active_page == 'report' %}><a href="{{ url_for('result_index') }}">Test Results</a></li>
-        <li {% if active_page == 'location' %}><a href="{{ url_for('summary', location='richmond') }}">Testing Summaries</a></li>
+        <li {% if active_page == 'report' %} class="active"{% endif%}><a href="{{ url_for('result_index') }}">Test Results</a></li>
+        <li {% if active_page == 'location' %} class="active"{% endif%}><a href="{{ url_for('summary', location='richmond') }}">Testing Summaries</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://github.com/GiacofeiHome/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
+        <li><a href="https://github.com/JamesRiverHomeBrewers/WaterTesting/issues/new"><span class="glyphicon glyphicon-inbox"></span> Issues/Suggestions</a></li>
       </ul>
     </div>
   </div>
@@ -116,7 +82,7 @@
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
       <a class="btn btn-primary btn-sm btn-block" href="#" role="button">Link</a>
-      
+      <br>
       <a href="#">What's Tested?</a>
       {% endblock %}
     </div>
