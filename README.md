@@ -1,3 +1,3 @@
 # WaterTesting
 JRHB water testing result analysis.
-[Test Site](https://giacofeihome.github.io/WaterTesting/index.html)
+[Test Site](https://jamesriverhomebrewers.github.io/WaterTesting/index.html)
